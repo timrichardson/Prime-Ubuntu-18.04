@@ -195,6 +195,7 @@ alias nvidia-modeset off'''
         blacklist_fd.close()
 
     def _enable_prime_service(self):
+        #uses bbswitch to poweroff the nvidia card
         subprocess.call(['systemctl', 'enable', 'nvidia-prime-boot.service'])
         subprocess.call(['systemctl', 'daemon-reload'])
 
