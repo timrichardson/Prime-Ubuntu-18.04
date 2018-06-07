@@ -50,8 +50,13 @@ and then reattempt
 
 # How does it work?
 
-The script calls the a background service which kills lightdm, takes a few steps to change state, and restarts lightdm
-The steps to change state create or delete an xorg config file, and remove or add the nvidia drivers to the running kernel. This work is done in the rust code.
+The script calls a background service which kills lightdm, takes a few steps to change state, and restarts lightdm
+The steps to change state:
+
+* create or delete an xorg config file, 
+* and remove or add the nvidia drivers to the running kernel. 
+
+This work is done in the rust code.
 
 The nvidia drivers are always present in the kernel image when you start the machine (as a consequence of the standard ubuntu install of the nvidia drivers). 
 So at startup, they have to be removed before the display manager starts, if you are in intel mode. At this point, the card is turned off. That's the file of the nvidia-prime-boot.service. 
