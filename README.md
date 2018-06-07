@@ -43,7 +43,8 @@ and repeat `make install`
 
 Reinstalling may need you to 
 ```
-sudo /usr/local/bin/prime_socket```
+sudo /usr/local/bin/prime_socket
+```
 and then reattempt
 `make install`
 
