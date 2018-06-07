@@ -20,7 +20,7 @@ sudo apt install lightdm
 
 # How to build & install
 First build the rust part with cargo\
-cd prime_socket
+cd prime_socket\
 cargo build
 
 
