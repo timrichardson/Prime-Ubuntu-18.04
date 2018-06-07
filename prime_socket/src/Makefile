@@ -6,3 +6,4 @@ install:
 	sudo cp ../target/debug/prime_socket /usr/local/bin
 	sudo chmod +x /usr/local/bin/prime-select
 	sudo chmod +x /usr/local/bin/prime_socket
+	sudo systemctl enable prime-socket.service

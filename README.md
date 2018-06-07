@@ -37,16 +37,18 @@ The first time you use sudo prime-select nvidia to change, you may get an error 
 /usr/share/X11/xorg.conf.d/20-intel.conf
 which the script tries to delete. 
 do
-sudo touch /usr/share/X11/xorg.conf.d/20-intel.conf
-and repeat
+`sudo touch /usr/share/X11/xorg.conf.d/20-intel.conf`
+and repeat `make install`
 
 
 Reinstalling may need you to 
-sudo /usr/local/bin/prime_socket
+```
+sudo /usr/local/bin/prime_socket```
 and then reattempt
-make install
+`make install`
 
-#How does it work?
+# How does it work?
+
 The script calls the a background service which kills lightdm, takes a few steps to change state, and restarts lightdm
 The steps to change state create or delete an xorg config file, and remove or add the nvidia drivers to the running kernel. This work is done in the rust code.
 
