@@ -49,6 +49,35 @@ sudo rm /usr/local/bin/prime_socket
 and then reattempt
 `make install`
 
+## Prime sync for tear free laptop panel
+In nvidia mode, you'll get tearing on the laptop unless you enable prime sync.\
+`sudo vi /etc/modprobe.d/zz-nvidia-modeset.conf`
+and include this:
+```
+#enable prime-sync
+options nvidia-drm modeset=1
+```
+and \
+`sudo update-initramfs -u`
+
+
+
+## Display manager doesn't start?
+If you swap to intel, reboot and can't get the display manager working, this is probably because the nvidia drivers were not unloaded. 
+get to a virtual console and 
+check with `lsmod|grep nvidia`. 
+If this is the problem, then
+
+```
+sudo rmmod nvidia_drm
+sudo rmmod nvidia_modeset
+sudo rmmod nvidia_uvm
+sudo rmmod nvidia
+sudo systemctl start lightdm
+```
+but you will have to work out why the nvidia-prime-boot.service did not do its job.
+
+
 # Usage
 
 ```
