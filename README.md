@@ -33,7 +33,7 @@ sudo systemctl enable prime-socket\
 sudo systemctl start prime-socket
 
 
-#Notes
+# Notes
 
 The first time you use sudo prime-select nvidia to change, you may get an error about a missing file
 /usr/share/X11/xorg.conf.d/20-intel.conf
