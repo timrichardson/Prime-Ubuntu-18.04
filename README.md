@@ -38,14 +38,13 @@ sudo systemctl start prime-socket
 The first time you use sudo prime-select nvidia to change, you may get an error about a missing file
 /usr/share/X11/xorg.conf.d/20-intel.conf
 which the script tries to delete. 
-do
-`sudo touch /usr/share/X11/xorg.conf.d/20-intel.conf`
-and repeat `make install`
+Do: `sudo touch /usr/share/X11/xorg.conf.d/20-intel.conf`
+and repeat `sudo prime-select nvidia`
 
 
 Reinstalling may need you to 
 ```
-sudo /usr/local/bin/prime_socket
+sudo rm /usr/local/bin/prime_socket
 ```
 and then reattempt
 `make install`
