@@ -1,5 +1,5 @@
 install:
-	sudo cp 10-monitor.conf /usr/share/X11/xorg.conf.d/
+	#sudo cp 10-monitor.conf /usr/share/X11/xorg.conf.d/
 	sudo cp nvidia-prime-boot.service /etc/systemd/system/
 	sudo cp prime-socket.service /etc/systemd/system/
 	sudo cp prime-select /usr/local/bin

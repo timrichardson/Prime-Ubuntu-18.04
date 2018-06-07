@@ -51,7 +51,8 @@ fn main() {
                 .and_then(move |_| {
                     let kill_x = Command::new("sh")
                         .arg("-c")
-                        .arg("systemctl disable lightdm && systemctl stop lightdm")
+                        //.arg("systemctl disable lightdm && systemctl stop lightdm")
+                        .arg(" systemctl stop lightdm")
                         .status()?;
 
                     if !kill_x.success() {
