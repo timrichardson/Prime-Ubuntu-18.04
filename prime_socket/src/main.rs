@@ -86,7 +86,8 @@ fn main() {
                     sleep(Duration::from_millis(500));
                     let restart_x = Command::new("sh")
                         .arg("-c")
-                        .arg("dpkg-reconfigure lightdm && systemctl start lightdm")
+                        //.arg("dpkg-reconfigure lightdm && systemctl start lightdm")
+                        .arg("systemctl start lightdm")
                         .status()?;
 
                     if !restart_x.success() {
