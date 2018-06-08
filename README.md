@@ -1,5 +1,5 @@
 # Prime-Ubuntu-18.04
-Nvidia Prime without rebooting
+Nvidia Prime without rebooting. Assumes lightdm is installed.
 
 # Dependencies:
 
@@ -11,10 +11,11 @@ and follow the installation instructions
 also, properly install the nvidia drivers the standard ubuntu way, from Additional Drivers
 
 
-bbswitch (via package bbswitch-dkms)\
-Ubuntu 18.04 (might work with other distros if you change some paths)
+* Ubuntu 18.04 (might work with other distros if you change some paths)
 
-lightdm as the display manager
+* bbswitch (via package bbswitch-dkms)\
+
+* lightdm as the display manager
 sudo apt install lightdm
 
 The ubuntu install of the nvidia driver will also install nvidia-prime, Ubuntu's optimus module. The code supersedes that but you should leave the ubuntu package installed. 
@@ -28,7 +29,7 @@ cargo build
 
 then:\
 cd src\
-make install\
+sudo make install\
 sudo systemctl enable prime-socket\
 sudo systemctl start prime-socket
 
