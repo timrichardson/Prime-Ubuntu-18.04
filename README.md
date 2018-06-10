@@ -164,6 +164,8 @@ but you will have to work out why the nvidia-prime-boot.service did not do its j
 
 These two methods have solved any problems I have encountered. 
 
+## Stil stuck?
+
 An idea: 
 turn off nvidia-prime-boot.service
 `systemctl disable nvidia-prime-boot.service`
