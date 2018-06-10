@@ -164,6 +164,17 @@ but you will have to work out why the nvidia-prime-boot.service did not do its j
 
 These two methods have solved any problems I have encountered. 
 
+An idea: 
+turn off nvidia-prime-boot.service
+`systemctl disable nvidia-prime-boot.service`
+
+swap to a virtual terminal (eg ctrl-alt F4)
+
+run `sudo /usr/local/bin/prime_socket`
+
+now go back to your GUI session, or some other virtual terminal, and do 
+`prime-select intel`
+and see what you see in the prime_socket VT
 
 # How does it work?
 
