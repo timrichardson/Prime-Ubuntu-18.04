@@ -147,6 +147,8 @@ you may also find something useful in
 journalctl -e
 ```
 
+You should not see an error the bbswitch is not installed, because that means you didn't read the instructions above. Also, you should not see errors that no nvidia modules are installed, because that means you either did not install the nvidia modules, or you removed them (perhaps by 18.04-standard `prime-select intel`, in which case `sudo /usr/bin/prime-select nvidia` and reboot.
+
 ## Fix attempt 2
 if you can't get to a graphical session even with recovery boot,
  then try to get to a virtual console and 
