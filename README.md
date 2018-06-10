@@ -1,5 +1,6 @@
 # Prime-Ubuntu-18.04
 Nvidia Prime without rebooting. Requires lightdm (although gdm3 seems to work much better in Ubuntu 18.04 and possibly this code could work with it).
+Nvidia Prime without rebooting. Assumes lightdm is installed.
 
 # Dependencies:
 
@@ -11,10 +12,11 @@ and follow the installation instructions
 also, properly install the nvidia drivers the standard ubuntu way, from Additional Drivers
 
 
-bbswitch (via package bbswitch-dkms)\
-Ubuntu 18.04 (might work with other distros if you change some paths)
+* Ubuntu 18.04 (might work with other distros if you change some paths)
 
-lightdm as the display manager
+* bbswitch (via package bbswitch-dkms)\
+
+* lightdm as the display manager
 ```
 sudo apt install lightdm
 ```
@@ -34,7 +36,7 @@ cargo build
 then:\
 ```
 cd src\
-make install\
+sudo make install\
 sudo systemctl enable prime-socket\
 sudo systemctl start prime-socket
 ```
