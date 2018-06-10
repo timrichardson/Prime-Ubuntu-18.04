@@ -51,11 +51,13 @@ sudo prime-select intel|nvidia|query
 
 Don't use the graphical switcher of the nvidia-control panel. 
 
-It uses the standard debian way, which will rebuild your kernel. It goes to the effort of actually removing the nvidia drivers if you go to intel mode, which will stop this method from working, such it uses the much faster of approach of not uninstalling anything, but unloading modules from memory if we don't want them. 
-If you remove the nvidia modules using Ubuntu's standard (slow) method, you willneed to use the standard method to put them back (by using the nvidia control panel to swap back to nvidia).
-If you want to use the standard prime-select script, it is
+It uses the standard debian way, which will rebuild your kernel. It goes to the effort of actually removing the nvidia drivers if you go to intel mode, which will stop this method from working, since it uses the much faster of approach of not uninstalling anything, but unloading modules from memory if we don't want them. 
+If you remove the nvidia modules using Ubuntu's standard (slow) method, you will need to use the standard method to put them back (by using the nvidia control panel to swap back to nvidia).
+If you want to use the standard prime-select script, it is untouched at
 /usr/bin/prime-select
-and it is not touched by the installation of this code, but it is masked. If you just run prime-select, your shell will find the modified version in /usr/local/bin first
+
+The modified version at /usr/local/bin has priority in the path so if you need to use the standard script, be explicit about the path.
+
 
 # Notes
 
@@ -65,7 +67,7 @@ which the script tries to delete.
 Do: `sudo touch /usr/share/X11/xorg.conf.d/20-intel.conf`
 and repeat `sudo prime-select nvidia`
 
-* todo: fix this.
+* todo: fix this, it's a paper-cut.
 
 
 Reinstalling may need you to 
@@ -82,10 +84,11 @@ You could rename /usr/local/bin/prime-select to /usr/local/bin/prime-select-fast
 
 
 If you are in intel mode, then nvidia-prime-boot.service is enabled, and it will unload the nvidia drivers. The standard Ubuntu method does not expect this; if shouldn't affect you booting in intel mode, but it can't be good if you are trying to use the standard Ubuntu method to boot into hybrid mode. 
-So disable the service
+So disable the service.
 
-sudo systemctl disable nvidia-prime-boot.service
+`sudo systemctl disable nvidia-prime-boot.service`
 
+## Uninstall bbswitch-dkms
 You installed the bbswitch-dkms module to get this working.
 The standard Ubuntu approach doesn't use bbswitch (the decision which causes all the problems). I wouldn't expect any problems by leaving it installed, but it is unnecessary if you want to use the standard Ubuntu 18.04 approach to Optimus.
 
@@ -110,10 +113,13 @@ Tearing you see on non-laptop panels won't be fixed by prime sync. For that prob
 
 # Troubleshooting: Display manager doesn't start?
 
-First, make sure you did the systemctl lines of the the install instructions
+First, make sure you did the systemctl lines of the the install instructions.
 
 
 If you swap to intel, reboot and can't get the display manager working, this is probably because the nvidia drivers were not unloaded. 
+
+## Fix attempt 1:
+
 boot in recovery mode, and choose "resume boot" (possibly twice)
 This will probably get lightdm started, allowing you to log in.
 
@@ -139,12 +145,12 @@ you may also find something useful in
 journalctl -e
 ```
 
-
+## Fix attempt 2
 if you can't get to a graphical session even with recovery boot,
  then try to get to a virtual console and 
 check with `lsmod|grep nvidia`. 
 If the nvidia drivers are present:
-If this is the problem, then from the virtual terminal:
+then from the virtual terminal:
 
 ```
 sudo systemctl stop lightdm
@@ -156,6 +162,7 @@ sudo systemctl start lightdm
 ```
 but you will have to work out why the nvidia-prime-boot.service did not do its job.
 
+These two methods have solved any problems I have encountered. 
 
 
 # How does it work?
