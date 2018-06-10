@@ -12,6 +12,8 @@ However, I did test the build once using the Ubuntu rust pacages, and it worked 
 
 also, properly install the nvidia drivers the standard ubuntu way, from Additional Drivers
 
+* This code assumes the nvidia drivers are installed. They are installed by the standard Ubuntu module, but if you did the standard 18.04 `prime-select intel`, they are no longer installed in the kernel. So do `prime-select nvidia` and reboot. Make sure you have the nvidia drivers running before proceeding.
+
 
 * Ubuntu 18.04 (might work with other distros if you change some paths)
 
