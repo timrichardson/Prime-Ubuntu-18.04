@@ -28,6 +28,8 @@ The ubuntu install of the nvidia driver will also install nvidia-prime, Ubuntu's
 
 
 # How to build & install
+Naturally, make sure you have git and git clone this repository :) 
+
 
 First build the rust part with cargo
 ```
