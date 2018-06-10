@@ -204,7 +204,7 @@ This work is done in the rust code.
 The nvidia drivers are always present in the kernel image when you start the machine (as a consequence of the standard ubuntu install of the nvidia drivers). 
 So at startup, they have to be removed before the display manager starts, if you are in intel mode. At this point, the card is turned off. Removing the drivers and turning off the nvidia card is the job of the nvidia-prime-boot.service. 
 
-# How is the different to the standard 18.04 approach?
+# How is this different to the standard 18.04 approach?
 
 Ubuntu 18.04 does not use bbswitch to power-off the nvidia card when you are in intel-only mode. Instead, the developers swapped to an officially-supported kernel feature, which only works when the nouveau driver is present. 
 Unfortunately, this means the nvidia drivers have to be removed. So prime-select intel goes through an elaborate process of removing the nvidia drivers, rebuilding the initramfs image and rebooting, solely to load nouveau so the nvidia card can be turned off. 
