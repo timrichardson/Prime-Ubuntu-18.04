@@ -1,13 +1,14 @@
 # Prime-Ubuntu-18.04
 Nvidia Prime without rebooting. Requires lightdm (although gdm3 seems to work much better in Ubuntu 18.04 and possibly this code could work with it).
-Nvidia Prime without rebooting. Assumes lightdm is installed.
 
 # Dependencies:
 
 You need rust.
 visit http://www.rust-lang.org
-and follow the installation instructions
-(or can install from apt)
+and follow the installation instructions. It's one line. 
+The rust website urges you to install it this way and it's what I did. 
+However, I did test the build once using the Ubuntu rust pacages, and it worked fine. 
+(install from apt: `sudo apt install rustc`)
 
 also, properly install the nvidia drivers the standard ubuntu way, from Additional Drivers
 
