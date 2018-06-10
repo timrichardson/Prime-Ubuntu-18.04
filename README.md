@@ -15,7 +15,7 @@ also, properly install the nvidia drivers the standard ubuntu way, from Addition
 * This code assumes the nvidia drivers are installed. They are installed by the standard Ubuntu module, but if you did the standard 18.04 `prime-select intel`, they are no longer installed in the kernel. So do `prime-select nvidia` and reboot. Make sure you have the nvidia drivers running before proceeding.
 
 
-* Ubuntu 18.04 (might work with other distros if you change some paths)
+* Ubuntu 18.04 (might work with other distros of similar age which are based on the vendor-neutral library approach, if you change some paths)
 
 * bbswitch (via package bbswitch-dkms)\
 
