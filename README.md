@@ -27,18 +27,18 @@ The ubuntu install of the nvidia driver will also install nvidia-prime, Ubuntu's
 
 # How to build & install
 
-First build the rust part with cargo\
+First build the rust part with cargo
 ```
-cd prime_socket\
+cd prime_socket
 cargo build
 ```
 
 
-then:\
+then:
 ```
-cd src\
-sudo make install\
-sudo systemctl enable prime-socket\
+cd src
+sudo make install
+sudo systemctl enable prime-socket
 sudo systemctl start prime-socket
 ```
 
