@@ -7,7 +7,7 @@ You need rust.
 visit http://www.rust-lang.org
 and follow the installation instructions. It's one line. 
 The rust website urges you to install it this way and it's what I did. 
-However, I did test the build once using the Ubuntu rust pacages, and it worked fine. 
+However, I did test the build once using the Ubuntu rust packages, and it worked fine. 
 (install from apt: `sudo apt install rustc`)
 
 also, properly install the nvidia drivers the standard ubuntu way, from Additional Drivers
@@ -17,7 +17,7 @@ also, properly install the nvidia drivers the standard ubuntu way, from Addition
 
 * Ubuntu 18.04 (might work with other distros of similar age which are based on the vendor-neutral library approach, if you change some paths)
 
-* bbswitch (via package bbswitch-dkms)\
+* bbswitch (via `sudo apt install bbswitch-dkms`)
 
 * lightdm as the display manager
 ```
