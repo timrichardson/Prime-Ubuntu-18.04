@@ -55,9 +55,8 @@ sudo systemctl start prime-socket
 sudo prime-select intel|nvidia|query
 ```
 
-Don't use the graphical switcher of the nvidia-control panel. 
+Don't use the graphical switcher of the nvidia-control panel. It uses the standard debian way, which will rebuild your kernel. It goes to the effort of actually removing the nvidia drivers if you go to intel mode, which will stop this fast-switch method from working.
 
-It uses the standard debian way, which will rebuild your kernel. It goes to the effort of actually removing the nvidia drivers if you go to intel mode, which will stop this method from working, since it uses the much faster of approach of not uninstalling anything, but unloading modules from memory if we don't want them. 
 If you remove the nvidia modules using Ubuntu's standard (slow) method, you will need to use the standard method to put them back (by using the nvidia control panel to swap back to nvidia).
 If you want to use the standard prime-select script, it is untouched at
 /usr/bin/prime-select
