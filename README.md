@@ -1,4 +1,4 @@
-# Prime-Ubuntu-18.04
+# Fast Switch  Prime-Ubuntu-18.04
 Nvidia Prime without rebooting. Assumes lightdm is installed.
 
 # Dependencies:
@@ -9,7 +9,11 @@ and follow the installation instructions
 (or can install from apt)
 
 also, properly install the nvidia drivers the standard ubuntu way, from Additional Drivers
+If you have done this already, make sure you do 
+```prime-select nvidia ``` 
+to ensure that nvidia drivers are installed in your initramfs.
 
+If you are reading this after installing the fast prime-select (this module), then you access the standard prime-select via /usr/bin/prime-select
 
 * Ubuntu 18.04 (might work with other distros if you change some paths)
 
@@ -35,6 +39,10 @@ sudo systemctl start prime-socket
 
 
 # Notes
+
+You must have the nvidia drivers installed in your initramfs.
+This will be true if you have installed the standard Ubuntu nvidia-drivers but it will not be true if you done the standard ```prime-select intel```.
+See notes above. 
 
 The first time you use sudo prime-select nvidia to change, you may get an error about a missing file
 /usr/share/X11/xorg.conf.d/20-intel.conf
@@ -63,7 +71,7 @@ and \
 
 
 
-## Display manager doesn't start?
+## Display manager doesn't start in intel mode
 If you swap to intel, reboot and can't get the display manager working, this is probably because the nvidia drivers were not unloaded. 
 get to a virtual console and 
 check with `lsmod|grep nvidia`. 
@@ -78,6 +86,13 @@ sudo systemctl start lightdm
 ```
 but you will have to work out why the nvidia-prime-boot.service did not do its job.
 
+
+
+## Display manager doesn't start in nvidia mode
+
+You probably don't have the nvidia drivers installed in your kernel image, which can happen even if think you have the nvidia modules installed, because the standard 18.04 optimus logic uninstalls the drivers when you choose intel mode. We don't want that. 
+
+Try ```sudo /usr/bin/prime-select nvidia```. If it complains that you are already in nvidia mode, do ```sudo /usr/bin/prime-select intel``` and then ```sudo /usr/bin/prime-select nvidia```
 
 # Usage
 
