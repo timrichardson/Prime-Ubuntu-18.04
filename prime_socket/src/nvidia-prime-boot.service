@@ -1,5 +1,5 @@
 [Unit]
-Description=dGPU off during boot
+Description=Unload nvidia modules and turn dGPU off during boot
 After=nvidia-fallback.service
 
 [Service]

@@ -48,6 +48,11 @@ sudo systemctl enable prime-socket
 sudo systemctl start prime-socket
 ```
 
+if reinstalling, do this first:
+```
+sudo rm /usr/local/bin/prime_socket
+```
+
 
 # Usage
 

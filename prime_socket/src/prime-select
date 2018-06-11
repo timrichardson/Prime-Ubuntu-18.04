@@ -131,12 +131,12 @@ class Switcher(object):
         boot_params = {}
         # Get the VGA connectors to disable on card1
         # in the form of boot parameters
-        vga_params = self._get_boot_params_from_phantom_vga_connectors()
-        for elem in vga_params:
-            elems = elem.split('=')
-            boot_params[elems[0]] = elems[1]
-        boot_params['nouveau.runpm'] = '0'
-        #self._add_boot_params(self._grub_cmdline_start, self._grub_path, boot_params)
+        # vga_params = self._get_boot_params_from_phantom_vga_connectors()
+        # for elem in vga_params:
+        #    elems = elem.split('=')
+        #    boot_params[elems[0]] = elems[1]
+        # boot_params['nouveau.runpm'] = '0'
+        # self._add_boot_params(self._grub_cmdline_start, self._grub_path, boot_params)
 
         #self._update_grub()
         self._blacklist_nvidia()
