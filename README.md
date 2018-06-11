@@ -48,12 +48,6 @@ sudo systemctl enable prime-socket
 sudo systemctl start prime-socket
 ```
 
-if reinstalling, do this first:
-```
-sudo rm /usr/local/bin/prime_socket
-```
-
-
 # Usage
 
 ```
@@ -72,7 +66,7 @@ The modified version at /usr/local/bin has priority in the path so if you need t
 # Notes
 
 You must have the nvidia drivers installed in your initramfs.
-This will be true if you have installed the standard Ubuntu nvidia-drivers but it will not be true if you done the standard ```prime-select intel```.
+This will be true if you have installed the standard Ubuntu nvidia-drivers but it will not be true if you did the standard ```prime-select intel```.
 See notes above. 
 
 The first time you use sudo prime-select nvidia to change, you may get an error about a missing file
