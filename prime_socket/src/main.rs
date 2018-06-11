@@ -64,7 +64,7 @@ fn main() {
                             sleep(Duration::from_millis(500));
                             let load_mods = Command::new("sh")
                                 .arg("-c")
-                                .arg("rmmod nouveau; modprobe nvidia")
+                                .arg("modprobe nvidia")
                                 .status()?;
 
                             if !load_mods.success() {
@@ -75,7 +75,7 @@ fn main() {
                             sleep(Duration::from_millis(500));
                             let unload_mods = Command::new("sh")
                                 .arg("-c")
-                                .arg("rmmod nouveau; rmmod nvidia-drm ; rmmod nvidia-uvm ; rmmod nvidia-modeset ; rmmod nvidia; modprobe bbswitch && echo OFF > /proc/acpi/bbswitch")
+                                .arg(" rmmod nvidia-drm ; rmmod nvidia-uvm ; rmmod nvidia-modeset ; rmmod nvidia; modprobe bbswitch && echo OFF > /proc/acpi/bbswitch")
                                 .status()?;
 
                             if !unload_mods.success() {
