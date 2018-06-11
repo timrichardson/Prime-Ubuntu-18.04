@@ -130,7 +130,7 @@ First, make sure you did the systemctl lines of the the install instructions.
 
 If you swap to intel, reboot and can't get the display manager working, this is probably because the nvidia drivers were not unloaded. 
 
-## Fix attempt 1:
+## Intel-mode fix attempt 1:
 
 boot in recovery mode, and choose "resume boot" (possibly twice)
 This will probably get lightdm started, allowing you to log in.
@@ -159,7 +159,7 @@ journalctl -e
 
 You should not see an error the bbswitch is not installed, because that means you didn't read the instructions above. Also, you should not see errors that no nvidia modules are installed, because that means you either did not install the nvidia drivers, or you removed them (perhaps by 18.04-standard `prime-select intel`, in which case `sudo /usr/bin/prime-select nvidia` and reboot. Pleaes carefully read the installation instructions above ...
 
-## Intel boot Fix attempt 2
+## Intel-mode Fix attempt 2
 if you can't get to a graphical session even with recovery boot,
  then try to get to a virtual console and 
 check with `lsmod|grep nvidia`. 
@@ -185,8 +185,6 @@ You probably don't have the nvidia drivers installed in your kernel image, which
 
 Try ```sudo /usr/bin/prime-select nvidia```. If it complains that you are already in nvidia mode, do ```sudo /usr/bin/prime-select intel``` and then ```sudo /usr/bin/prime-select nvidia```
 
-# Usage
-=======
 ## Still stuck?
 
 An idea: 
@@ -203,7 +201,8 @@ and see what you see in the prime_socket VT
 
 # How does it work?
 
-It uses a modified version of prime-select.\
+It uses a modified version of prime-select.
+
 The modified version is installed into /usr/local/bin which comes first in the standard path, so it masks the version of the nvidia-prime package
 
 This version uses bbswitch to disable the nvidia card, which was the standard Ubuntu method until 18.04
@@ -215,13 +214,11 @@ The script calls a background service which kills lightdm, takes a few steps to 
 The steps to change state:
 
 * create or delete an xorg config file, 
-* and remove or add the nvidia drivers to the running kernel. 
+* and remove or add the nvidia drivers to the running kernel. It never adds nvidia drivers which are missing; it assumes they are always in a booting-kernel, and unloads them & tunrs off the card if you are in intel mode. Therefore, it doesn't need to do much at all if you want nvidia mode; nvidia mode is basically the default situation. 
+The nvidia drivers are always present in the kernel image when you start the machine as a consequence of the standard ubuntu install of the nvidia drivers as long as you have not removed them by standard prime-select intel
 
-This work is done in the rust code.
-
-
-The nvidia drivers are always present in the kernel image when you start the machine (as a consequence of the standard ubuntu install of the nvidia drivers). 
-So at startup, they have to be removed before the display manager starts, if you are in intel mode. At this point, the card is turned off. Removing the drivers and turning off the nvidia card is the job of the nvidia-prime-boot.service. 
+The rust code prepares the state change. 
+ nvidia-prime-boot.service is what removes the nvidia drivers and powers off the card; it obviously only runs if you selected intel mode.
 
 # How is this different to the standard 18.04 approach?
 
