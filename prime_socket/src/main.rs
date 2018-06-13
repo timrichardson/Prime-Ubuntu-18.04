@@ -64,7 +64,7 @@ fn main() {
                             sleep(Duration::from_millis(500));
                             let load_mods = Command::new("sh")
                                 .arg("-c")
-                                .arg("modprobe nvidia")
+                                .arg("modprobe bbswitch && echo ON > /proc/acpi/bbswitch && modprobe nvidia")
                                 .status()?;
 
                             if !load_mods.success() {
