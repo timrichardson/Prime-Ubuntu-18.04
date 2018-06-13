@@ -1,0 +1,9 @@
+#!/bin/sh
+rmmod nouveau
+rmmod nvidia_drm
+rmmod nvidia_modeset
+rmmod nvidia_uvm
+rmmod nvidia
+modprobe bbswitch
+echo OFF > /proc/acpi/bbswitch
+

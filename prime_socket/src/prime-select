@@ -144,6 +144,7 @@ class Switcher(object):
         #self._update_initramfs()
 
         self._enable_prime_service()
+        self._disable_nvidia_fallback_service()
 
     def _enable_nvidia(self):
         #self._remove_boot_params(self._grub_cmdline_start,
@@ -158,6 +159,7 @@ class Switcher(object):
         #self._update_initramfs()
 
         self._disable_prime_service()
+        self._enable_nvidia_fallback_service()
 
     def _del_xorg_intel_conf(self):
         os.remove(self._xorg_path);
@@ -201,6 +203,14 @@ alias nvidia-modeset off'''
 
     def _disable_prime_service(self):
         subprocess.call(['systemctl', 'disable', 'nvidia-prime-boot.service'])
+        subprocess.call(['systemctl', 'daemon-reload'])
+
+    def _enable_nvidia_fallback_service(self):
+        subprocess.call(['systemctl', 'enable', 'nvidia-fallback.service'])
+        subprocess.call(['systemctl', 'daemon-reload'])
+
+    def _disable_nvidia_fallback_service(self):
+        subprocess.call(['systemctl', 'disable', 'nvidia-fallback.service'])
         subprocess.call(['systemctl', 'daemon-reload'])
 
     def _add_boot_params(self, pattern, path, params):
