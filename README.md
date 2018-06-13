@@ -97,13 +97,19 @@ and then reattempt
 # Uninstall
 
 This code doesn't really disturb your system much. 
-You could rename /usr/local/bin/prime-select to /usr/local/bin/prime-select-fast
+You could rename /usr/local/bin/prime-select to /usr/local/bin/prime-select-fast so that the standard script is no longer masked by the modified one.
 
 
 If you are in intel mode, then nvidia-prime-boot.service is enabled, and it will unload the nvidia drivers. The standard Ubuntu method does not expect this; if shouldn't affect you booting in intel mode, but it can't be good if you are trying to use the standard Ubuntu method to boot into hybrid mode. 
 So disable the service.
 
 `sudo systemctl disable nvidia-prime-boot.service`
+
+And then
+
+`sudo /usr/bin/prime-select nvidia`
+
+You should be back to standard ubuntu now. 
 
 ## Uninstall bbswitch-dkms
 You installed the bbswitch-dkms module to get this working.
