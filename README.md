@@ -62,6 +62,15 @@ If you want to use the standard prime-select script, it is untouched at
 
 The modified version at /usr/local/bin has priority in the path so if you need to use the standard script, be explicit about the path.
 
+# Did it work?
+
+after entering intel mode, start a sudo shell and test if the card is off:
+```
+sudo -i
+modprobe bbswitch
+cat /proc/acpi/bbswitch
+```
+
 
 # Notes
 
