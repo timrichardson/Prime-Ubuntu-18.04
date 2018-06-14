@@ -86,14 +86,6 @@ and repeat `sudo prime-select nvidia`
 
 * todo: fix this, it's a paper-cut.
 
-
-Reinstalling may need you to 
-```
-sudo rm /usr/local/bin/prime_socket
-```
-and then reattempt
-`make install`
-
 # Uninstall
 
 This code doesn't really disturb your system much. 
