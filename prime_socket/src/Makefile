@@ -10,3 +10,4 @@ install:
 	sudo chmod +x /usr/local/bin/prime_socket
 	sudo chmod +x /usr/local/bin/turnoff_nvidia_at_boot
 	sudo systemctl enable prime-socket.service
+	sudo systemctl start prime-socket.service
