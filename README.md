@@ -5,11 +5,7 @@ Nvidia Prime without rebooting. Requires lightdm (although gdm3 seems to work mu
 # Dependencies:
 
 You need rust.
-visit http://www.rust-lang.org
-and follow the installation instructions. It's one line. 
-The rust website urges you to install it this way and it's what I did. 
-However, I did test the build once using the Ubuntu rust packages, and it worked fine. 
-(install from apt: `sudo apt install rustc`)
+install from apt: `sudo apt install rustc cargo`
 
 * properly install the nvidia drivers the standard ubuntu way, from Additional Drivers
 If you have done this already, make sure you do 
@@ -32,20 +28,9 @@ The ubuntu install of the nvidia driver will also install nvidia-prime, Ubuntu's
 # How to build & install
 Naturally, make sure you have git and git clone this repository :) 
 
-
-First build the rust part with cargo
-```
-cd prime_socket
-cargo build
-```
-
-
-then:
 ```
 cd src
 sudo make install
-sudo systemctl enable prime-socket
-sudo systemctl start prime-socket
 ```
 
 # Usage
@@ -91,12 +76,8 @@ and repeat `sudo prime-select nvidia`
 This code doesn't really disturb your system much. 
 You could rename /usr/local/bin/prime-select to /usr/local/bin/prime-select-fast so that the standard script is no longer masked by the modified one.
 
-
-If you are in intel mode, then nvidia-prime-boot.service is enabled, and it will unload the nvidia drivers. The standard Ubuntu method does not expect this; if shouldn't affect you booting in intel mode, but it can't be good if you are trying to use the standard Ubuntu method to boot into hybrid mode. 
-So disable the service.
-
-`sudo systemctl disable nvidia-prime-boot.service`
-
+purge and reinstall the package nvidia-prime
+`sudo apt purge nvidia-prime; sudo apt install nvidia-prime`
 And then
 
 `sudo /usr/bin/prime-select nvidia`
