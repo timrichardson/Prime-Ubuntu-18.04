@@ -7,7 +7,8 @@ Nvidia Prime without rebooting. Requires lightdm (although gdm3 seems to work mu
 You need rust.
 install from apt: `sudo apt install rustc cargo`
 
-* properly install the nvidia drivers the standard ubuntu way, from Additional Drivers
+* properly install the nvidia drivers the standard ubuntu way, from Additional Drivers.
+
 If you have done this already, make sure you do 
 ```sudo /usr/bin/prime-select nvidia ``` 
 to ensure that nvidia drivers are installed in your initramfs. 
@@ -21,7 +22,7 @@ to ensure that nvidia drivers are installed in your initramfs.
 ```
 sudo apt install lightdm
 ```
-
+You can swap between display managers with `sudo dpkg-reconfigure ligthdm`
 The ubuntu install of the nvidia driver will also install nvidia-prime, Ubuntu's optimus module. The code supersedes that but you should leave the ubuntu package installed. 
 
 Note: while testing this in a reinstall of Ubuntu 18.04 I found that lightdm did not install properly. I installed xubuntu-desktop which relies on lightdm, but still kept ubuntu as the log-in session, and then it worked. 
@@ -83,6 +84,13 @@ purge and reinstall the package nvidia-prime
 And then
 
 `sudo /usr/bin/prime-select nvidia`
+
+and to revert to gdm3, install and select it as the default:
+```
+sudo apt install gdm3
+sudo dpkg-reconfigure gdm3
+```
+
 
 You should be back to standard ubuntu now. 
 
