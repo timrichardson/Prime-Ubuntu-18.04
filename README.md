@@ -119,7 +119,24 @@ Tearing you see on non-laptop panels won't be fixed by prime sync. For that prob
 
 # Troubleshooting: Display manager doesn't start?
 
-First, make sure you did the systemctl lines of the the install instructions.
+First, you need access to a virtual console. 
+And depending on what has gone wrong, you may be able to access a virtual console.
+`sudo apt install openssh-server` is always helpful too.
+
+Starting in recovery mode usually works to get a GUI login. (choose resume boot twice during the boot process). 
+make sure the systemctl lines in the makefile worked by using systemctl status prime-socket.
+This is what it should look like: the service should be active and running.
+```
+● prime-socket.service - Socket service for on the fly prime switching
+   Loaded: loaded (/etc/systemd/system/prime-socket.service; enabled; vendor pre
+   Active: active (running) since Fri 2018-06-15 08:41:00 AEST; 31min ago
+ Main PID: 808 (prime_socket)
+    Tasks: 2 (limit: 4915)
+   CGroup: /system.slice/prime-socket.service
+           └─808 /usr/local/bin/prime_socket
+
+Jun 15 08:41:00 raffles systemd[1]: Started Socket service for on the fly prime
+```
 
 
 ## Display manager doesn't start in intel mode
