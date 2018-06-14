@@ -2,6 +2,11 @@
 
 Nvidia Prime without rebooting. Requires lightdm (although gdm3 seems to work much better in Ubuntu 18.04 and possibly this code could work with it).
 
+This is not for Ubuntu beginners. If things go wrong, you need to know about virtual consoles and recovery mode and some basic systemd admin.
+
+To install it, you need to know about git clone and you need to be able to change your display manager to lightdm.
+
+
 # Dependencies:
 
 You need rust.
@@ -119,8 +124,10 @@ Tearing you see on non-laptop panels won't be fixed by prime sync. For that prob
 
 # Troubleshooting: Display manager doesn't start?
 
+This is not for Ubuntu beginners. You need to know about virtual consoles and recovery mode and some basic systemd admin.
+
 First, you need access to a virtual console. 
-And depending on what has gone wrong, you may be able to access a virtual console.
+Depending on what has gone wrong, you may be able to access a virtual console.
 `sudo apt install openssh-server` is always helpful too.
 
 Starting in recovery mode usually works to get a GUI login. (choose resume boot twice during the boot process). 
