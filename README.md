@@ -54,7 +54,7 @@ sudo systemctl start prime-socket
 sudo prime-select intel|nvidia|query
 ```
 
-Don't use the graphical switcher of the nvidia-control panel. It uses the standard debian way, which will rebuild your kernel. It goes to the effort of actually removing the nvidia drivers if you go to intel mode, which will stop this fast-switch method from working.
+Don't use the graphical switcher of the nvidia-control panel. It uses the standard debian way, which will rebuild your kernel image: it does this to remove the nvidia drivers with extreme prejudice when you swap to intel mode, which will stop this fast-switch method from working.
 
 If you remove the nvidia modules using Ubuntu's standard (slow) method, you will need to use the standard method to put them back (by using the nvidia control panel to swap back to nvidia).
 If you want to use the standard prime-select script, it is untouched at
@@ -231,11 +231,11 @@ The rust code prepares the state change.
 
 # How is this different to the standard 18.04 approach?
 
-Ubuntu 18.04 does not use bbswitch to power-off the nvidia card when you are in intel-only mode. Instead, the developers swapped to an officially-supported kernel feature, which only works when the nouveau driver is present. 
-Unfortunately, this means the nvidia drivers have to be removed. So prime-select intel goes through an elaborate process of removing the nvidia drivers, rebuilding the initramfs image and rebooting, solely to load nouveau so the nvidia card can be turned off. 
+Two things are different. Firstly, nvidia-prime in Ubuntu 18.04 does not use bbswitch to power-off the nvidia card when you are in intel-only mode. Instead, the developers swapped to an officially-supported kernel feature, which only works when the nouveau driver is present. 
+Unfortunately, this means the nvidia drivers have to be removed. So prime-select intel goes through an elaborate process of removing the nvidia drivers, rebuilding the initramfs image and rebooting, solely to load nouveau so the nvidia card can be turned off. I don't know why they can't just be unloaded following the approach used here, which is the second difference.
 
 Swapping back to nvidia then requires the basically the same process to repeat, except this time the nvidia modules are re-added to the kernel image. 
 
-It is a very time consuming approach, mandating a reboot. Also, quite a few users have trouble getting the nouveau-power-off to work. 
+It is a very time consuming approach, mandating a reboot. Also, quite a few users have trouble getting the nouveau-power-off to work, so for those users it is slow, intrusive and broken.
 
-bbswitch is not officially in the kernel. However, it is well used in just about all other distributions and there is no sign that it will stop working.
+bbswitch is not officially in the kernel. However, it is well used in just about all other distribution; it has a significant user-base, and there is no sign that it will stop working. Right now, it works with kernel 4.17 even as Ubuntu 18.04 is based on 4.15.
