@@ -31,7 +31,7 @@ Note: while testing this in a reinstall of Ubuntu 18.04 I found that lightdm did
 Naturally, make sure you have git and git clone this repository :) 
 
 ```
-cd src
+cd prime_socket/src
 sudo make install
 ```
 
