@@ -6,6 +6,9 @@ This is not for Ubuntu beginners. If things go wrong, you need to know about vir
 
 To install it, you need to know about git clone and you need to be able to change your display manager to lightdm.
 
+Good support comes from this thread:
+https://devtalk.nvidia.com/default/topic/1032482/linux/optimus-on-ubuntu-18-04-is-a-step-backwards-but-i-found-the-first-good-solution/
+
 
 # Dependencies:
 
