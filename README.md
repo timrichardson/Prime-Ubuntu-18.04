@@ -22,7 +22,7 @@ to ensure that nvidia drivers are installed in your initramfs.
 ```
 sudo apt install lightdm
 ```
-You can swap between display managers with `sudo dpkg-reconfigure ligthdm`
+You can swap between display managers with `sudo dpkg-reconfigure lightdm`
 The ubuntu install of the nvidia driver will also install nvidia-prime, Ubuntu's optimus module. The code supersedes that but you should leave the ubuntu package installed. 
 
 Note: while testing this in a reinstall of Ubuntu 18.04 I found that lightdm did not install properly. I installed xubuntu-desktop which relies on lightdm, but still kept ubuntu as the log-in session, and then it worked. 
