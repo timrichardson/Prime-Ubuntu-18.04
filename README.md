@@ -1,6 +1,7 @@
 # Fast Switch  Prime-Ubuntu-18.04
 
 Nvidia Prime without rebooting. Requires lightdm (although gdm3 seems to work much better in Ubuntu 18.04 and possibly this code could work with it).
+Why does this exist? It restores the pre-18.04 'bbswitch' approach; it's much faster to change profiles amd more reliable. However, it also takes advantage of recent improvements, so you can swap modes without rebooting.
 
 This is not for Ubuntu beginners. If things go wrong, you need to know about virtual consoles and recovery mode and some basic systemd admin.
 
