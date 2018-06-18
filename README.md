@@ -1,6 +1,7 @@
 # Fast Switch  Prime-Ubuntu-18.04
 
 Nvidia Prime without rebooting. Requires lightdm.
+
 Why does this exist? It restores the pre-18.04 'bbswitch' approach; it's much faster to change profiles and more reliable. However, it also takes advantage of recent improvements, so you can swap modes without rebooting.
 
 This is not for Ubuntu beginners. If things go wrong, you need to know about virtual consoles and recovery mode and some basic systemd admin.
@@ -22,7 +23,6 @@ If you have done this already, make sure you do
 ```sudo /usr/bin/prime-select nvidia ``` 
 to ensure that nvidia drivers are installed in your initramfs. 
 
-
 * Ubuntu 18.04 (might work with other distros of similar age which are based on the vendor-neutral library approach, if you change some paths)
 
 * bbswitch (via `sudo apt install bbswitch-dkms`)
@@ -34,11 +34,12 @@ sudo apt install lightdm
 You can swap between display managers with `sudo dpkg-reconfigure lightdm`
 The ubuntu install of the nvidia driver will also install nvidia-prime, Ubuntu's optimus module. The code supersedes that but you should leave the ubuntu package installed. 
 
-Note: while testing this in a reinstall of Ubuntu 18.04 I found that lightdm did not install properly. I installed xubuntu-desktop which relies on lightdm, but still kept ubuntu as the log-in session, and then it worked. 
+Note: while testing this in a reinstall of Ubuntu 18.04, lightdm did not install properly on one laptop. Work-around: install xubuntu-desktop which relies on lightdm, but still kept ubuntu as the log-in session.
 
 
 # How to build & install
-Naturally, make sure you have git and git clone this repository :) 
+
+Naturally, make sure you have git and git clone this repository  
 
 ```
 cd prime_socket/src
@@ -202,9 +203,7 @@ sudo rmmod nvidia_uvm
 sudo rmmod nvidia
 sudo systemctl start lightdm
 ```
-but you will have to work out why the nvidia-prime-boot.service did not do its job, which is to remove these modules.
-
-These two methods have solved any problems I have encountered. 
+but you will have to work out why the nvidia-prime-boot.service did not do its job.
 
 
 ## Display manager doesn't start in nvidia mode?
@@ -243,6 +242,7 @@ The steps to change state:
 
 * create or delete an xorg config file, 
 * and remove or add the nvidia drivers to the running kernel. It never adds nvidia drivers which are missing; it assumes they are always in a booting-kernel, and unloads them & tunrs off the card if you are in intel mode. Therefore, it doesn't need to do much at all if you want nvidia mode; nvidia mode is basically the default situation. 
+
 The nvidia drivers are always present in the kernel image when you start the machine as a consequence of the standard ubuntu install of the nvidia drivers as long as you have not removed them by standard prime-select intel
 
 The rust code prepares the state change. 
@@ -250,8 +250,8 @@ The rust code prepares the state change.
 
 # How is this different to the standard 18.04 approach?
 
-Two things are different. Firstly, nvidia-prime in Ubuntu 18.04 does not use bbswitch to power-off the nvidia card when you are in intel-only mode. Instead, the developers swapped to an officially-supported kernel feature, which only works when the nouveau driver is present. 
-Unfortunately, this means the nvidia drivers have to be removed. So prime-select intel goes through an elaborate process of removing the nvidia drivers, rebuilding the initramfs image and rebooting, solely to load nouveau so the nvidia card can be turned off. I don't know why they can't just be unloaded following the approach used here, which is the second difference.
+Two things are different. Firstly, nvidia-prime in Ubuntu 18.04 does not use bbswitch to power-off the nvidia card when you are in intel-only mode. Instead, the developers swapped to an officially-supported kernel feature, which apparently only works when the nouveau driver is present. 
+Unfortunately, this means the nvidia drivers have to be removed. So prime-select intel goes through an elaborate process of removing the nvidia drivers, rebuilding the initramfs image and rebooting, solely to load nouveau so the nvidia card can be turned off. 
 
 Swapping back to nvidia then requires the basically the same process to repeat, except this time the nvidia modules are re-added to the kernel image. 
 
