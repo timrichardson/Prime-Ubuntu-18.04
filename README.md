@@ -1,6 +1,8 @@
 # Fast Switch  Prime-Ubuntu-18.04
 
-Nvidia Prime without rebooting. Requires lightdm.
+Nvidia Prime for Optimus laptops using Ubuntu & lightdm. Change hybrid & pure Intel modes without rebooting. Based on Ubuntu 18.04's prime-select & bbswitch.
+
+Requires lightdm.
 
 Why does this exist? It restores the pre-18.04 'bbswitch' approach; it's much faster to change profiles and more reliable. However, it also takes advantage of recent improvements, so you can swap modes without rebooting.
 
