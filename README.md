@@ -13,6 +13,9 @@ To install it, you need to know about git clone and you need to be able to chang
 Good support comes from this thread:
 https://devtalk.nvidia.com/default/topic/1032482/linux/optimus-on-ubuntu-18-04-is-a-step-backwards-but-i-found-the-first-good-solution/
 
+Note: the Ubuntu developer who works so hard on this, delivering Ubuntu and Mint the best Optimus experience of any Linux distribution, is working on a new approach to switching, which is close to the old pre 18.04 method. 
+
+He has a harder task than unofficial solutions like this code, because he needs to find a solution that works with gdm3, but for sure standard Ubuntu will deliver a better experience at some point. 
 
 # Dependencies:
 
@@ -61,6 +64,19 @@ If you want to use the standard prime-select script, it is untouched at
 /usr/bin/prime-select
 
 The modified version at /usr/local/bin has priority in the path so if you need to use the standard script, be explicit about the path.
+
+## Experimental: get the nvidia control panel to use the modified prime-select code
+
+Ubuntu has added a section to the nvidia control panel which lets you change profiles; it's referred to above. These modifications run /usr/bin/prime-select.
+
+You can replace this path with the modified version of prime-select once you're happy that it's working.
+
+```
+sudo mv /usr/bin/prime-select /usr/bin/prime-select_orig
+sudo ln -s /usr/local/bin/prime-select /usr/bin/prime-select
+```
+
+
 
 # Did it work?
 
