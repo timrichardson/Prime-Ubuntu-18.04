@@ -22,7 +22,8 @@ He has a harder task than unofficial solutions like this code, because he needs 
 # Dependencies:
 
 You need rust.
-install from apt: `sudo apt install rustc cargo`
+
+* install from apt: `sudo apt install rustc cargo`
 
 * properly install the nvidia drivers the standard ubuntu way, from Additional Drivers.
 
@@ -46,7 +47,7 @@ Note: while testing this in a reinstall of Ubuntu 18.04, lightdm did not install
 
 # How to build & install
 
-Naturally, make sure you have git and git clone this repository  
+Naturally, make sure you have git and git clone this repository. After you have done that...
 
 ```
 cd prime_socket/src
