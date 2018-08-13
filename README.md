@@ -73,6 +73,8 @@ and repeat `sudo prime-select nvidia`
 
 Note: the modified script is installed into /usr/local/bin. By default, scripts in this path will be found before the official script in /usr/bin
 
+# Cautions (how to break this)
+
 Don't use the graphical switcher of the nvidia-control panel. It uses the standard debian way, which will rebuild your kernel image: it does this to remove the nvidia drivers with extreme prejudice when you swap to intel mode, which will stop this fast-switch method from working, because it assumes the nvidia drivers are present.
 
 If you remove the nvidia modules using Ubuntu's standard (slow) method, you will need to use the standard method to put them back (by using the nvidia control panel to swap back to nvidia or from a shell).
