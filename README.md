@@ -31,7 +31,7 @@ If you have done this already, make sure you do
 ```sudo /usr/bin/prime-select nvidia ``` 
 to ensure that nvidia drivers are installed in your initramfs. 
 
-* Ubuntu 18.04 (might work with other distros of similar age which are based on the vendor-neutral library approach, if you change some paths)
+* Ubuntu 18.04 and siblings, most of which use lightdm anyway (might work with other distros of similar age which are based on the vendor-neutral library approach, if you change some paths)
 
 * bbswitch (via `sudo apt install bbswitch-dkms`)
 
@@ -39,8 +39,10 @@ to ensure that nvidia drivers are installed in your initramfs.
 ```
 sudo apt install lightdm
 ```
-You can swap between display managers with `sudo dpkg-reconfigure lightdm`
-The ubuntu install of the nvidia driver will also install nvidia-prime, Ubuntu's optimus module. The code supersedes that but you should leave the ubuntu package installed. 
+You can swap between installed display managers with `sudo dpkg-reconfigure lightdm`
+I don't know why gdm3 doesn't work with this. I literally don't know. Hence lightdm
+
+The ubuntu install of the nvidia driver will also install nvidia-prime, Ubuntu's optimus module. This code supersedes that (but does not overwrite it, it puts modified scripts elsewhere in your path). You should leave the ubuntu package installed though.
 
 Note: while testing this in a reinstall of Ubuntu 18.04, lightdm did not install properly on one laptop. Work-around: install xubuntu-desktop which relies on lightdm, but still kept ubuntu as the log-in session.
 
@@ -59,20 +61,21 @@ sudo make install
 ```
 sudo prime-select intel|nvidia|query
 ```
+Note: the modified script is installed into /usr/local/bin. By default, scripts in this path will be found before the official script in /usr/bin
 
-Don't use the graphical switcher of the nvidia-control panel. It uses the standard debian way, which will rebuild your kernel image: it does this to remove the nvidia drivers with extreme prejudice when you swap to intel mode, which will stop this fast-switch method from working.
+Don't use the graphical switcher of the nvidia-control panel. It uses the standard debian way, which will rebuild your kernel image: it does this to remove the nvidia drivers with extreme prejudice when you swap to intel mode, which will stop this fast-switch method from working, because it assumes the nvidia drivers are present.
 
-If you remove the nvidia modules using Ubuntu's standard (slow) method, you will need to use the standard method to put them back (by using the nvidia control panel to swap back to nvidia).
+If you remove the nvidia modules using Ubuntu's standard (slow) method, you will need to use the standard method to put them back (by using the nvidia control panel to swap back to nvidia or from a shell).
 If you want to use the standard prime-select script, it is untouched at
 /usr/bin/prime-select
 
-The modified version at /usr/local/bin has priority in the path so if you need to use the standard script, be explicit about the path.
+The modified version at /usr/local/bin has priority in the path. To use the standard script, be explicit about the path.
 
-## Experimental: get the nvidia control panel to use the modified prime-select code
+## Optional: get the nvidia control panel to use the modified prime-select code
 
 Ubuntu has added a section to the nvidia control panel which lets you change profiles; it's referred to above. These modifications run /usr/bin/prime-select.
 
-You can replace this path with the modified version of prime-select once you're happy that it's working.
+So you can make the gui tool use the modified version of prime-select once you're happy that it's working.
 
 ```
 sudo mv /usr/bin/prime-select /usr/bin/prime-select_orig
