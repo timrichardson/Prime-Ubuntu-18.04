@@ -2,6 +2,8 @@
 
 Nvidia Prime for Optimus laptops using Ubuntu & lightdm. Change hybrid & pure Intel modes without rebooting. Based on Ubuntu 18.04's prime-select & bbswitch.
 
+It is not invasive. It requires that you change your display manager, it installs a script and it installs a small background service that does nothing until you change modes.It doesn't touch the kernel, boot arguments, grub or your nvidia drivers.
+
 Requires lightdm.
 
 It looks like this: https://www.youtube.com/watch?v=RfB_IWw7pl4&feature=youtu.be
