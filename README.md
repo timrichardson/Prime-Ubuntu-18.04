@@ -61,6 +61,16 @@ sudo make install
 ```
 sudo prime-select intel|nvidia|query
 ```
+
+The first time you use sudo prime-select nvidia to change, you may get an error about a missing file
+/usr/share/X11/xorg.conf.d/20-intel.conf
+which the script tries to delete. 
+Do: `sudo touch /usr/share/X11/xorg.conf.d/20-intel.conf`
+and repeat `sudo prime-select nvidia`
+
+* todo: fix this, it's a paper-cut.
+
+
 Note: the modified script is installed into /usr/local/bin. By default, scripts in this path will be found before the official script in /usr/bin
 
 Don't use the graphical switcher of the nvidia-control panel. It uses the standard debian way, which will rebuild your kernel image: it does this to remove the nvidia drivers with extreme prejudice when you swap to intel mode, which will stop this fast-switch method from working, because it assumes the nvidia drivers are present.
@@ -100,13 +110,7 @@ You must have the nvidia drivers installed in your initramfs.
 This will be true if you have installed the standard Ubuntu nvidia-drivers but it will not be true if you did the standard ```prime-select intel```.
 See notes above. 
 
-The first time you use sudo prime-select nvidia to change, you may get an error about a missing file
-/usr/share/X11/xorg.conf.d/20-intel.conf
-which the script tries to delete. 
-Do: `sudo touch /usr/share/X11/xorg.conf.d/20-intel.conf`
-and repeat `sudo prime-select nvidia`
 
-* todo: fix this, it's a paper-cut.
 
 # Uninstall
 
