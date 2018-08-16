@@ -29,7 +29,7 @@ You need rust.
 
 * properly install the nvidia drivers the standard ubuntu way, from Additional Drivers.
 
-If you have done this already, make sure you do 
+* If you have done this already, make sure you do 
 ```sudo /usr/bin/prime-select nvidia ``` 
 to ensure that nvidia drivers are installed in your initramfs. 
 
