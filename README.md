@@ -23,9 +23,7 @@ He has a harder task than unofficial solutions like this code, because he needs 
 
 # Dependencies:
 
-You need rust.
-
-* install from apt: `sudo apt install rustc cargo`
+* You need the programming language rust, install from apt: `sudo apt install rustc cargo`
 
 * properly install the nvidia drivers the standard ubuntu way, from Additional Drivers.
 
