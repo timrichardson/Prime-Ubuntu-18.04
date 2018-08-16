@@ -51,6 +51,7 @@ Note: while testing this in a reinstall of Ubuntu 18.04, lightdm did not install
 
 # How to build & install
 
+Pay attention to the tip above: make sure you are in a working nvidia mode.
 Naturally, make sure you have git and git clone this repository. After you have done that...
 
 ```
