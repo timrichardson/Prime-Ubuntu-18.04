@@ -11,6 +11,8 @@ It looks like this: https://www.youtube.com/watch?v=RfB_IWw7pl4&feature=youtu.be
 Why does this exist? It restores the pre-18.04 'bbswitch' approach; it's much faster to change profiles and more reliable. However, it also takes advantage of recent improvements, so you can swap modes without rebooting.
 
 This is not for Ubuntu beginners. If things go wrong, you need to know about virtual consoles and recovery mode and some basic systemd admin.
+Ubuntu 18.04 and siblings, most of which use lightdm anyway (might work with other distros of similar age which are based on the vendor-neutral library approach, if you change some paths)
+
 
 To install it, you need to know about git clone and you need to be able to change your display manager to lightdm.
 
@@ -21,7 +23,9 @@ Note: the Ubuntu developer who works so hard on this, delivering Ubuntu and Mint
 
 He has a harder task than unofficial solutions like this code, because he needs to find a solution that works with gdm3, but for sure standard Ubuntu will deliver a better experience at some point. 
 
-# Dependencies:
+See the tip below about activating prime-sync for nvidia optimus tear free graphics on the laptop's panel wen in nvidia mode.
+
+# Dependencies and preparation:
 
 * You need the programming language rust, install from apt: `sudo apt install rustc cargo`
 
@@ -39,6 +43,7 @@ to ensure that nvidia drivers are installed in your initramfs.
 ```
 sudo apt install lightdm
 ```
+## Changing display-managers
 You can swap between installed display managers with `sudo dpkg-reconfigure lightdm`
 I don't know why gdm3 doesn't work with this. I literally don't know. Hence lightdm
 
@@ -140,11 +145,11 @@ You installed the bbswitch-dkms module to get this working.
 The standard Ubuntu approach doesn't use bbswitch (the decision which causes all the problems). I wouldn't expect any problems by leaving it installed, but it is unnecessary if you want to use the standard Ubuntu 18.04 approach to Optimus.
 
 
-# Prime sync for tear free laptop panel
+# Nvidia Optimus Prime sync for tear-free laptop panel
 
-This tip applies to standard Ubuntu too. 
+This tip applies to standard Ubuntu/Mint too. 
 
-In nvidia mode, you'll get tearing on the laptop unless you enable prime sync.\
+In nvidia mode, you'll get tearing on the laptop unless you enable prime sync.
 `sudo vi /etc/modprobe.d/zz-nvidia-modeset.conf`
 and include this:
 ```
