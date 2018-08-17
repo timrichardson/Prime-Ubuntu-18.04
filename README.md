@@ -110,6 +110,12 @@ sudo -i
 modprobe bbswitch
 cat /proc/acpi/bbswitch
 ```
+and good output looks like this
+```
+tim@w520-mint ~ $  cat /proc/acpi/bbswitch 
+0000:01:00.0 OFF
+tim@w520-mint ~ $ 
+```
 
 
 # Notes
