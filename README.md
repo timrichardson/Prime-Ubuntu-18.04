@@ -62,6 +62,13 @@ cd prime_socket/src
 sudo make install
 ```
 
+# Upgrading to a new nvidia driver
+When I added the ppa for the latest nvidia drivers and updated to the latest 390 release, things did not work well.
+Doing 
+```sudo update-initramfs -u```
+and rebooting restored functionality
+
+
 # Usage
 
 ```
