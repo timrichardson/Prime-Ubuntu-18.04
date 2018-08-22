@@ -1,6 +1,6 @@
 # Fast Switch  Prime-Ubuntu-18.04 / Mint 19
 
-Nvidia Prime for Optimus laptops using Ubuntu & lightdm. Change hybrid & pure Intel modes without rebooting. Based on Ubuntu 18.04's prime-select & bbswitch. I have tested it on Mint 19 and it works there too.
+Nvidia Prime for Optimus laptops using Ubuntu & lightdm. Change hybrid & pure Intel modes without rebooting. Based on Ubuntu 18.04's prime-select & bbswitch. I have tested it on Mint 19 and it works there too. I am using the long term support nvidia driver, I am currently on 390.77.
 
 It is not invasive. It requires that you change your display manager, it installs a script and it installs a small background service that does nothing until you change modes. It doesn't touch the kernel, boot arguments, grub or your nvidia drivers.
 
