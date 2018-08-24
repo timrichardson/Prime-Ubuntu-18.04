@@ -123,7 +123,18 @@ tim@w520-mint ~ $  cat /proc/acpi/bbswitch
 0000:01:00.0 OFF
 
 ```
+## What services should be running in intel mode?
+In intel mode, the service nvidia-prime-boot.service should exectute before the display manager starts, to remove nvidia and nouveau modules, and then use bbswitch to power-off the card. The modified prime-select script actives this service when doing prime-select intel
+and it is obviously deactivated when prime-select nvidia
 
+
+This is typical output in intel mode:
+```
+tim@raffles:~$ systemctl status nvidia-prime-boot.service 
+● nvidia-prime-boot.service - Unload nvidia modules and turn dGPU off during boo
+   Loaded: loaded (/etc/systemd/system/nvidia-prime-boot.service; enabled; vendo
+   Active: inactive (dead)
+```
 
 # Notes
 
