@@ -63,8 +63,9 @@ sudo make install
 ```
 
 # Upgrading to a new nvidia driver
-When I added the ppa for the latest nvidia drivers and updated to the latest 390 release, things did not work well.
-Doing 
+When I added the ppa for the latest nvidia drivers and updated to the latest 390 release, or to the 396 release, things did not work well when going from intel to nvidia. The script did not complete, with many messages about signature errors. 
+To fix this, force the machine to reboot ... you should be in nvidia mode. 
+Then  
 ```sudo update-initramfs -u```
 and rebooting restored functionality
 
