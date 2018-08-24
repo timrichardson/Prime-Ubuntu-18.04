@@ -131,9 +131,10 @@ and it is obviously deactivated when prime-select nvidia
 This is typical output in intel mode:
 ```
 tim@raffles:~$ systemctl status nvidia-prime-boot.service 
-● nvidia-prime-boot.service - Unload nvidia modules and turn dGPU off during boo
-   Loaded: loaded (/etc/systemd/system/nvidia-prime-boot.service; enabled; vendo
+● nvidia-prime-boot.service - Unload nvidia modules and turn dGPU off during boot
+   Loaded: loaded (/etc/systemd/system/nvidia-prime-boot.service; enabled; vendor preset: enabled)
    Active: inactive (dead)
+
 ```
 
 # Notes
