@@ -2,30 +2,35 @@
 
 Nvidia Prime for Optimus laptops using Ubuntu & lightdm. Change hybrid & pure Intel modes without rebooting. Based on Ubuntu 18.04's prime-select & bbswitch. I have tested it on Mint 19 and it works there too, but I use Ubuntu 18.04 on my Optimus laptops. I am using the long term support nvidia driver, I am currently on 390.87 (from the nvidia ppa https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa). Note: if you use this PPA, lock the nvidia settings version to the 390 series: the 396 version of nvidia-settings won't start in intel mode. apt will default to upgrading nvidia-settings to 396 even if you are using the 390 driver.
 
-This Matthieu Gras method is not invasive. It requires that you change your display manager, it installs a script and it installs a small background service that does nothing until you change modes. It doesn't touch the kernel, boot arguments, grub or your nvidia drivers.
+Ubuntu's prime-select method (fixed here) is different to bumblebee: you should use the Ubuntu method if you want to use your laptop with external monitors. If this is not important to you, you may find bumblebee better. The bumblebee project is responsbible for bbswitch (power off the nvidia card), which Ubuntu 18.04 removed and which this Matthieu Gras approach restores.
 
-Requires lightdm.
+This Matthieu Gras method is not invasive. It requires that you change your display manager, it installs a script and it installs a small background service that does nothing until you change modes. It doesn't touch the kernel, boot arguments, grub or your nvidia drivers, although it does require you to restore bbswitch to ubuntu.
+
+**Requires lightdm.**
 
 It looks like this: https://www.youtube.com/watch?v=RfB_IWw7pl4&feature=youtu.be
 
+## Why does this code exist?
+
 Why does this exist? It restores the pre-18.04 'bbswitch' approach; it's much faster to change profiles and more reliable. However, it also takes advantage of recent improvements, so you can swap modes without rebooting.
 
-This is not for Ubuntu beginners. If things go wrong, you need to know about virtual consoles and recovery mode and some basic systemd admin.
-Ubuntu 18.04 and siblings, most of which use lightdm anyway (might work with other distros of similar age which are based on the vendor-neutral library approach, if you change some paths)
+## Is it for me?
 
+This is not for Ubuntu beginners. If things go wrong, you need to know about virtual consoles and recovery mode and some basic systemd admin. If you want support, you'll need to read the debugging steps in this document.
 
-To install it, you need to know about git clone and you need to be able to change your display manager to lightdm.
+To install it, you need to know about `git clone` and you need to change your display manager to lightdm.
 
-Good support comes from this thread:
+Good nvidia technical support comes from this thread:
 https://devtalk.nvidia.com/default/topic/1032482/linux/optimus-on-ubuntu-18-04-is-a-step-backwards-but-i-found-the-first-good-solution/
 
-Note: the Ubuntu developer who works so hard on this, delivering Ubuntu and Mint the best Optimus experience of any Linux distribution, is working on a new approach to switching, which is close to the old pre 18.04 method. 
+Note: the Ubuntu developer who works so hard on this, delivering Ubuntu and Mint the best Optimus experience of any Linux distribution, is working on a new approach to switching, which is close to the old pre 18.04 method. He has a harder task than unofficial solutions like this code, because he needs to find a solution that works with gdm3. 
 
-He has a harder task than unofficial solutions like this code, because he needs to find a solution that works with gdm3, but for sure standard Ubuntu will deliver a better experience at some point. 
-
-See the tip below about activating prime-sync for nvidia optimus tear free graphics on the laptop's panel wen in nvidia mode.
+## Tear-free prime sync
+Please see the tip below about activating prime-sync for nvidia optimus tear free graphics on the laptop's panel wen in nvidia mode. With this script and that fix, you can look forward to a decent Optimus experience.
 
 # Dependencies and preparation:
+
+* This is tested mostly with Ubuntu 18.04, but should work in Mint 19 and xubuntu.
 
 * You need the programming language rust, install from apt: `sudo apt install rustc cargo`
 
@@ -33,16 +38,15 @@ See the tip below about activating prime-sync for nvidia optimus tear free graph
 
 * If you have done this already, make sure you do 
 ```sudo /usr/bin/prime-select nvidia ``` 
-to ensure that nvidia drivers are installed in your initramfs. 
+to ensure that nvidia drivers are installed in your initramfs. That is, use the standard Ubuntu script to force nvidia mode. Do this after upgrading nvidia drivers too, if you upgraded while in intel mode.
 
-* Ubuntu 18.04 and siblings, most of which use lightdm anyway (might work with other distros of similar age which are based on the vendor-neutral library approach, if you change some paths)
-
-* bbswitch (via `sudo apt install bbswitch-dkms`)
+* install bbswitch (via `sudo apt install bbswitch-dkms`)
 
 * lightdm as the display manager
 ```
 sudo apt install lightdm
 ```
+
 ## Changing display-managers
 You can swap between installed display managers with `sudo dpkg-reconfigure lightdm`
 I don't know why gdm3 doesn't work with this. I literally don't know. Hence lightdm
