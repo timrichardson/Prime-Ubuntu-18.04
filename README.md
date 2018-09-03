@@ -71,7 +71,7 @@ Force it into nvidia mode (`/usr/bin/prime-select nvidia`, that is, use the offi
 
 Then  
 ```sudo update-initramfs -u```
-and rebooting restored functionality
+This script should work again.
 
 
 # Usage (changing modes)
