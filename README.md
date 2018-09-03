@@ -111,7 +111,7 @@ So you can make the gui tool use the modified version of prime-select once you'r
 sudo mv /usr/bin/prime-select /usr/bin/prime-select_orig
 sudo ln -s /usr/local/bin/prime-select /usr/bin/prime-select
 ```
-Of course, this means if you need to use the standard script (for example, to force nvidia mode if you upgrade nvidia drivers without reading the notes above), you have to explicity use the official script).
+Of course, this means if you need to use the standard script (for example, to force nvidia mode if you upgrade nvidia drivers without reading the notes above), you have to explicitly use the official script).
 
 
 # Did it work? Is the nvidia card powered off?
@@ -187,7 +187,7 @@ The standard Ubuntu approach doesn't use bbswitch (the decision which causes all
 
 # Nvidia Optimus Prime sync for tear-free laptop panel
 
-This tip applies to standard Ubuntu/Mint too. 
+This tip applies to standard Ubuntu/Mint too.
 
 In nvidia mode, you'll get tearing on the laptop unless you enable prime sync.
 `sudo vi /etc/modprobe.d/zz-nvidia-modeset.conf`
