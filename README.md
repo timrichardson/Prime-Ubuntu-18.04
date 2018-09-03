@@ -58,13 +58,15 @@ Note: while testing this in a reinstall of Ubuntu 18.04, lightdm did not install
 
 # How to build & install
 
-Pay attention to the tip above: make sure you are in a working nvidia mode.
+Pay fanatically detailed attention to the Dependencies and Preparation steps above. Each step is important. Make sure you are booted in a working nvidia mode!
+
 Naturally, make sure you have git and git clone this repository. After you have done that...
 
 ```
 cd prime_socket/src
 sudo make install
 ```
+The first time you do that, 90% of the total time will be downloading rust dependencies.
 
 # Upgrading to a new nvidia driver: do this when you are already in nvidia mode
 Tip: `sudo prime-select nvidia` before updating nvidia.
