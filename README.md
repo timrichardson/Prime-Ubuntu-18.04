@@ -49,7 +49,7 @@ sudo apt install lightdm
 
 ## Changing display-managers
 You can swap between installed display managers with `sudo dpkg-reconfigure lightdm`
-I don't know why gdm3 doesn't work with this. I literally don't know. Hence lightdm
+I don't know why gdm3 doesn't work with nvidia drivers in modeset mode. No one seems to know how to fix it. Hence lightdm
 
 The ubuntu install of the nvidia driver will also install nvidia-prime, Ubuntu's optimus module. This code supersedes that (but does not overwrite it, it puts modified scripts elsewhere in your path). You should leave the ubuntu package installed though.
 
