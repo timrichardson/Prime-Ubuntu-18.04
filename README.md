@@ -26,7 +26,7 @@ https://devtalk.nvidia.com/default/topic/1032482/linux/optimus-on-ubuntu-18-04-i
 Note: the Ubuntu developer who works so hard on this, delivering Ubuntu and Mint the best Optimus experience of any Linux distribution, is working on a new approach to switching, which is close to the old pre 18.04 method. He has a harder task than unofficial solutions like this code, because he needs to find a solution that works with gdm3. 
 
 ## Tear-free prime sync
-Please see the tip below about activating prime-sync for nvidia optimus tear free graphics on the laptop's panel wen in nvidia mode. With this script and that fix, you can look forward to a decent Optimus experience.
+Please see the tip below about activating prime-sync for nvidia optimus tear free graphics on the laptop's panel when in nvidia mode. With this script and that fix, you can look forward to a decent Optimus experience.
 
 # Dependencies and preparation:
 
