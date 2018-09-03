@@ -62,34 +62,31 @@ cd prime_socket/src
 sudo make install
 ```
 
-# Upgrading to a new nvidia driver
-When I added the ppa for the latest nvidia drivers and updated to the latest 390 release, or to the 396 release, things did not work well when going from intel to nvidia. The script did not complete, with many messages about signature errors. 
-To fix this, force the machine to reboot ... you should be in nvidia mode. 
+# Upgrading to a new nvidia driver: do this when you are already in nvidia mode
+Tip: `sudo prime-select nvidia` before updating nvidia.
+
+If you upgrade in intel mode, probably the nvidia driver won't be added to your kernel image, since 18.04 removes the nvidia driver from the kernel when in intel mode (which we don't want for this script to work).
+Therefore, if that happens, you won't be able to change to nvidia mode until you fix it. 
+Force it into nvidia mode (`/usr/bin/prime-select nvidia`, that is, use the official Ubuntu 18.04 script).
+
 Then  
 ```sudo update-initramfs -u```
 and rebooting restored functionality
 
 
-# Usage
+# Usage (changing modes)
+Usage is the same as the standard script, but this one takes about five seconds. Note: it will immediately kill your gnome session and log you out, by terminating the display manager with root privileges.
 
 ```
 sudo prime-select intel|nvidia|query
 ```
 
-The first time you use sudo prime-select nvidia to change, you may get an error about a missing file
-/usr/share/X11/xorg.conf.d/20-intel.conf
-which the script tries to delete. 
-Do: `sudo touch /usr/share/X11/xorg.conf.d/20-intel.conf`
-and repeat `sudo prime-select nvidia`
 
-* todo: fix this, it's a paper-cut.
+Note: the modified script is installed into /usr/local/bin. By default, scripts in this path will be found before the official script in /usr/bin. This means that after you do the install, you have the original, standard ubuntu script untouched, but the modified one is earlier in the path.
 
+# Cautions (how to break it)
 
-Note: the modified script is installed into /usr/local/bin. By default, scripts in this path will be found before the official script in /usr/bin
-
-# Cautions (how to break this)
-
-Don't use the graphical switcher of the nvidia-control panel. It uses the standard debian way, which will rebuild your kernel image: it does this to remove the nvidia drivers with extreme prejudice when you swap to intel mode, which will stop this fast-switch method from working, because it assumes the nvidia drivers are present.
+Don't use the graphical switcher of the nvidia-control panel to change modes. It uses the standard debian prime-select script, which will remove the nvidia driver and rebuild your kernel image when you go to intel mode, which will stop this fast-switch method from working, because this Matthier Gras approach assumes the nvidia drivers are always present in the kernel image (it removes them when you are in intel mode, prior to powering off the nvidia card with bbswitch).
 
 If you remove the nvidia modules using Ubuntu's standard (slow) method, you will need to use the standard method to put them back (by using the nvidia control panel to swap back to nvidia or from a shell).
 If you want to use the standard prime-select script, it is untouched at
@@ -97,7 +94,7 @@ If you want to use the standard prime-select script, it is untouched at
 
 The modified version at /usr/local/bin has priority in the path. To use the standard script, be explicit about the path.
 
-## Optional: get the nvidia control panel to use the modified prime-select code
+## Optional/Experimental: get the nvidia control panel to use the modified prime-select code
 
 Ubuntu has added a section to the nvidia control panel which lets you change profiles; it's referred to above. These modifications run /usr/bin/prime-select.
 
@@ -107,10 +104,10 @@ So you can make the gui tool use the modified version of prime-select once you'r
 sudo mv /usr/bin/prime-select /usr/bin/prime-select_orig
 sudo ln -s /usr/local/bin/prime-select /usr/bin/prime-select
 ```
+Of course, this means if you need to use the standard script (for example, to force nvidia mode if you upgrade nvidia drivers without reading the notes above), you have to explicity use the official script).
 
 
-
-# Did it work?
+# Did it work? Is the nvidia card powered off?
 
 after entering intel mode, start a sudo shell and test if the card is off:
 ```
