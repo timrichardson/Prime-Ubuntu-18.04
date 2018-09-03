@@ -75,9 +75,10 @@ If you upgrade in intel mode, probably the nvidia driver won't be added to your 
 Therefore, if that happens, you won't be able to change to nvidia mode until you fix it. 
 Force it into nvidia mode (`/usr/bin/prime-select nvidia`, that is, use the official Ubuntu 18.04 script).
 
-Then  
+
+This script should work again but you can try 
 ```sudo update-initramfs -u```
-This script should work again.
+for good luck.
 
 
 # Usage (changing modes)
