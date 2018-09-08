@@ -1,12 +1,14 @@
 # Fast Switch  Prime-Ubuntu-18.04 / Mint 19
 
-Nvidia Prime for Optimus laptops using Ubuntu & lightdm. Change hybrid & pure Intel modes without rebooting. Based on Ubuntu 18.04's prime-select & bbswitch. I have tested it on Mint 19 and it works there too, but I use Ubuntu 18.04 on my Optimus laptops. I am using the long term support nvidia driver, I am currently on 390.87 (from the nvidia ppa https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa). Note: if you use this PPA, lock the nvidia settings version to the 390 series: the 396 version of nvidia-settings won't start in intel mode. apt will default to upgrading nvidia-settings to 396 even if you are using the 390 driver.
+Nvidia Prime for Optimus laptops using Ubuntu & lightdm. Change hybrid & pure Intel modes without rebooting. Based on Ubuntu 18.04's prime-select & bbswitch. I have tested it on Mint 19 and Ubuntu 18.10 (pre-release versions) and it works there too, but I use Ubuntu 18.04 on my Optimus laptops.
+
+I am using the long term support nvidia driver, I am currently on 390.87 (from the nvidia ppa https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa). Note: if you use this PPA, lock the nvidia settings version to the 390 series: the 396 version of nvidia-settings won't start in intel mode. apt will default to upgrading nvidia-settings to 396 even if you are using the 390 driver.
 
 Ubuntu's prime-select method (fixed here) is different to bumblebee. If you don't care about external monitors, you may find bumblebee better (I have never used bumblebee). The bumblebee project is responsbible for the excellent bbswitch tool (powers off the nvidia card), which Ubuntu 18.04 removed and which this Matthieu Gras approach restores.
 
 This Matthieu Gras method is not very invasive. It requires that you change your display manager, it installs a script and it installs a small background service that does nothing until you change modes. It doesn't touch the kernel, boot arguments, grub or your nvidia drivers, although it does require you to restore bbswitch to ubuntu, which is a kernel module.
 
-**Requires lightdm.** 
+**Requires lightdm. And forget about wayland** 
 
 It looks like this: https://www.youtube.com/watch?v=RfB_IWw7pl4&feature=youtu.be
 
@@ -71,7 +73,7 @@ The first time you do that, 90% of the total time will be downloading rust depen
 # Upgrading to a new nvidia driver: do this when you are already in nvidia mode
 Tip: `sudo prime-select nvidia` before updating nvidia.
 
-If you upgrade in intel mode, probably the nvidia driver won't be added to your kernel image, since 18.04 removes the nvidia driver from the kernel when in intel mode (which we don't want for this script to work).
+If you upgrade in intel mode, probably the nvidia driver won't be added to your kernel image, since 18.04 removes the nvidia driver from the kernel when in intel mode. This is guaranteed not to work: this script assumes the nvidia drivers are always in the kernal, as it was before 18.04. 
 Therefore, if that happens, you won't be able to change to nvidia mode until you fix it. 
 Force it into nvidia mode (`/usr/bin/prime-select nvidia`, that is, use the official Ubuntu 18.04 script).
 
