@@ -207,7 +207,9 @@ Tearing you see on non-laptop panels won't be fixed by prime sync. For that prob
 
 # Troubleshooting: Display manager doesn't start?
 
-This is not for Ubuntu beginners. You need to know about virtual consoles and recovery mode and some basic systemd admin.
+This is not for Ubuntu beginners. You need to know about virtual consoles and recovery mode and some basic systemd admin.he 
+The easiest way to screw this up is not to set ligthdm as your default display-manager. You probably won't be able to login.
+So...
 
 First, you need access to a virtual console. 
 Depending on what has gone wrong, you may be able to access a virtual console.
