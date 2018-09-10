@@ -1,6 +1,7 @@
 # Fast Switch  Prime-Ubuntu-18.04 / Mint 19
 
-Nvidia Prime for Optimus laptops using Ubuntu & lightdm. Change hybrid & pure Intel modes without rebooting. Based on Ubuntu 18.04's prime-select & bbswitch. I have tested it on Mint 19 and Ubuntu 18.10 (pre-release versions) and it works there too, but I use Ubuntu 18.04 on my Optimus laptops.
+Nvidia Prime for Optimus laptops using Ubuntu & lightdm. Change hybrid & pure Intel modes without rebooting. Based on Ubuntu 18.04's prime-select & bbswitch. I have tested it on Mint 19, it works there too, but I use Ubuntu 18.04 on my Optimus laptops.
+Ubuntu 18.10 has an improved version for prime-select which hopefully makes this unnecessary.
 
 I am using the long term support nvidia driver, I am currently on 390.87 (from the nvidia ppa https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa). Note: if you use this PPA, lock the nvidia settings version to the 390 series: the 396 version of nvidia-settings won't start in intel mode. apt will default to upgrading nvidia-settings to 396 even if you are using the 390 driver.
 
@@ -169,6 +170,11 @@ You could rename /usr/local/bin/prime-select to /usr/local/bin/prime-select-fast
 
 purge and reinstall the package nvidia-prime
 `sudo apt purge nvidia-prime; sudo apt install nvidia-prime`
+
+Disable services:
+```systemctl disable nvidia-prime-boot.service
+systemctl disable prime-socket.service```
+
 And then
 
 `sudo /usr/bin/prime-select nvidia`
