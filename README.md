@@ -1,9 +1,11 @@
 # Fast Switch  Prime-Ubuntu-18.04 / Mint 19
 
-Nvidia Prime for Optimus laptops using Ubuntu & lightdm. Change hybrid & pure Intel modes without rebooting. Based on Ubuntu 18.04's prime-select & bbswitch. I have tested it on Mint 19, it works there too, but I use Ubuntu 18.04 on my Optimus laptops.
-Ubuntu 18.10 has an improved version for prime-select which hopefully makes this unnecessary.
+Nvidia Prime for Optimus laptops using Ubuntu & lightdm, based on work done by Matthieu Gras.
 
-I am using the long term support nvidia driver, I am currently on 390.87 (from the nvidia ppa https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa). Note: if you use this PPA, lock the nvidia settings version to the 390 series: the 396 version of nvidia-settings won't start in intel mode. apt will default to upgrading nvidia-settings to 396 even if you are using the 390 driver.
+Lets you change hybrid & pure Intel modes without rebooting. Based on Ubuntu 18.04's prime-select & bbswitch. I have tested it on Mint 19, it works there too, but I use Ubuntu 18.04 on my Optimus laptops.
+Ubuntu 18.10 has an improved version for prime-select which in my testing makes this unnecessary: it works in a very similar way, although it does not automatically kill your login session when you changes modes AND finally gdm3 is fixed when using nvidia in modeset (necessary for tear free graphics). The dev says it will be backported to 18.04 in due course. Fireworks and balloons! But until then, you can use this.
+
+I am using the long term support nvidia driver, I am currently on 390.87.
 
 Ubuntu's prime-select method (fixed here) is different to bumblebee. If you don't care about external monitors, you may find bumblebee better (I have never used bumblebee). The bumblebee project is responsbible for the excellent bbswitch tool (powers off the nvidia card), which Ubuntu 18.04 removed and which this Matthieu Gras approach restores.
 
@@ -30,6 +32,7 @@ Note: the Ubuntu developer who works so hard on this, delivering Ubuntu and Mint
 
 ## Tear-free prime sync
 Please see the tip below about activating prime-sync for nvidia optimus tear free graphics on the laptop's panel when in nvidia mode. With this script and that fix, you can look forward to a decent Optimus experience.
+Note that the changes to prime-select in pre-release Ubuntu 18.10 currently default to mode-setting being activated (the first linux distribution to do this, as far as I know). 
 
 # Dependencies and preparation:
 
@@ -96,7 +99,7 @@ Note: the modified script is installed into /usr/local/bin. By default, scripts 
 
 # Cautions (how to break it)
 
-Don't use the graphical switcher of the nvidia-control panel to change modes. It uses the standard debian prime-select script, which will remove the nvidia driver and rebuild your kernel image when you go to intel mode, which will stop this fast-switch method from working, because this Matthier Gras approach assumes the nvidia drivers are always present in the kernel image (it removes them when you are in intel mode, prior to powering off the nvidia card with bbswitch).
+Don't use the graphical switcher of the nvidia-control panel to change modes. It uses the standard debian prime-select script, which will remove the nvidia driver and rebuild your kernel image when you go to intel mode, which will stop this fast-switch method from working, because this Matthieu Gras approach assumes the nvidia drivers are always present in the kernel image (it removes them when you are in intel mode, prior to powering off the nvidia card with bbswitch).
 
 If you remove the nvidia modules using Ubuntu's standard (slow) method, you will need to use the standard method to put them back (by using the nvidia control panel to swap back to nvidia or from a shell).
 If you want to use the standard prime-select script, it is untouched at
