@@ -3,13 +3,14 @@
 Nvidia Prime for Optimus laptops using Ubuntu & lightdm, based on work done by Matthieu Gras.
 
 Lets you change hybrid & pure Intel modes without rebooting. Based on Ubuntu 18.04's prime-select & bbswitch. I have tested it on Mint 19, it works there too, but I use Ubuntu 18.04 on my Optimus laptops.
+
 Ubuntu 18.10 has an improved version for prime-select which in my testing makes this unnecessary: it works in a very similar way, although it does not automatically kill your login session when you changes modes AND finally gdm3 is fixed when using nvidia in modeset (necessary for tear free graphics). The dev says it will be backported to 18.04 in due course. Fireworks and balloons! But until then, you can use this.
 
 I am using the long term support nvidia driver, I am currently on 390.87.
 
 Ubuntu's prime-select method (fixed here) is different to bumblebee. If you don't care about external monitors, you may find bumblebee better (I have never used bumblebee). The bumblebee project is responsbible for the excellent bbswitch tool (powers off the nvidia card), which Ubuntu 18.04 removed and which this Matthieu Gras approach restores.
 
-This Matthieu Gras method is not very invasive. It requires that you change your display manager, it installs a script and it installs a small background service that does nothing until you change modes. It doesn't touch the kernel, boot arguments, grub or your nvidia drivers, although it does require you to restore bbswitch to ubuntu, which is a kernel module.
+This Matthieu Gras method is not very invasive. It requires that you change your display manager, it installs a script and it installs a small background service that does nothing until you change modes. It doesn't touch the kernel, boot arguments, grub or your nvidia drivers, although it does require you to put back the bbswitch-dkms package to ubuntu, which is a kernel module.
 
 **Requires lightdm. And forget about wayland** 
 
