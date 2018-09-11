@@ -4,7 +4,7 @@ Nvidia Prime for Optimus laptops using Ubuntu & lightdm, based on work done by M
 
 Lets you change hybrid & pure Intel modes without rebooting. Based on Ubuntu 18.04's prime-select & bbswitch. I have tested it on Mint 19, it works there too, but I use Ubuntu 18.04 on my Optimus laptops.
 
-Ubuntu 18.10 has an improved version for prime-select which in my testing makes this unnecessary: it works in a very similar way, although it does not automatically kill your login session when you changes modes AND finally gdm3 is fixed when using nvidia in modeset (necessary for tear free graphics). The dev says it will be backported to 18.04 in due course. Fireworks and balloons! But until then, you can use this.
+Ubuntu 18.10 has an improved version for prime-select which in my testing is very good, no need to install this repo. The 18.10 version of prime-select is reboot-less, finally fixes gdm3 when using nvidia in modeset (necessary for tear free graphics) and the dev says it will be backported to 18.04 in due course. Fireworks and balloons! But until then, you can use this.
 
 I am using the long term support nvidia driver, I am currently on 390.87.
 
