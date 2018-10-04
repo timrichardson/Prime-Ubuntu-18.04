@@ -1,5 +1,20 @@
 # Fast Switch  Prime-Ubuntu-18.04 / Mint 19
 
+*** Update
+The Ubuntu developer who looks after the ubuntu nvidia-prime package has updated his work for Ubuntu 18.10 (currently between beta and release). 
+It works with lightdm and the non-wayland session. Swapping between hybrid and intel-only works without rebooting, you just need to log out & in again. The nvidia card is turned off with acpi calls, similar to bbswitch although the code is incorporated into a supported ubuntu package now, bbswitch is not a dependency. 
+Also, mode setting and prime synchronisation is active by default, which I think is the first time a distribution has done this. 
+
+However, it does not work well with gdm3: external monitors don't work because the nvidia driver crashes. I have never got gdm3 working with Optimus when mode setting is turned on. You can at least log in: the intel driver works. 
+
+This bug with gdm3, nvidia and mode setting in x.org sessions is upstream and long-standing, and no one seems to be working on it. So ubuntu users with Optimus should stick with lightdm
+
+Alberto plans to backport the changes to 18.04, at which point the workaround here will be redundant
+
+***
+
+
+
 Nvidia Prime for Optimus laptops using Ubuntu & lightdm, based on work done by Matthieu Gras.
 
 Lets you change hybrid & pure Intel modes without rebooting. Based on Ubuntu 18.04's prime-select & bbswitch. I have tested it on Mint 19, it works there too, but I use Ubuntu 18.04 on my Optimus laptops.
