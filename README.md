@@ -177,9 +177,12 @@ $ systemctl status nvidia-prime-boot.service
 # Notes
 
 You must have the nvidia drivers installed in your initramfs.
-This will be true if you have installed the standard Ubuntu nvidia-drivers but it will not be true if you did the standard ```
+This will be true if you have installed the standard Ubuntu nvidia-drivers but it will not be true if you did the standard 
+
+```
 prime-select intel
 ```
+
 See notes above. 
 
 
