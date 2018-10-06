@@ -177,7 +177,9 @@ $ systemctl status nvidia-prime-boot.service
 # Notes
 
 You must have the nvidia drivers installed in your initramfs.
-This will be true if you have installed the standard Ubuntu nvidia-drivers but it will not be true if you did the standard ```prime-select intel```.
+This will be true if you have installed the standard Ubuntu nvidia-drivers but it will not be true if you did the standard ```
+prime-select intel
+```
 See notes above. 
 
 
@@ -187,18 +189,27 @@ See notes above.
 This code doesn't really disturb your system much. 
 You could rename /usr/local/bin/prime-select to /usr/local/bin/prime-select-fast so that the standard script is no longer masked by the modified one.
 
+
 purge and reinstall the package nvidia-prime
-`sudo apt purge nvidia-prime; sudo apt install nvidia-prime`
+```
+sudo apt purge nvidia-prime; sudo apt install nvidia-prime
+```
 
 Disable services:
-```systemctl disable nvidia-prime-boot.service
-systemctl disable prime-socket.service```
+
+```
+systemctl disable nvidia-prime-boot.service
+systemctl disable prime-socket.service
+```
 
 And then
 
-`sudo /usr/bin/prime-select nvidia`
+```
+sudo /usr/bin/prime-select nvidia
+```
 
 and to revert to gdm3, install and select it as the default:
+
 ```
 sudo apt install gdm3
 sudo dpkg-reconfigure gdm3
