@@ -29,7 +29,7 @@ This Matthieu Gras method is not very invasive. It requires that you change your
 
 **Requires lightdm. And forget about wayland** 
 
-It looks like this: https://www.youtube.com/watch?v=RfB_IWw7pl4&feature=youtu.be
+It looks like this: [YouTube: Optimus fast switch Ubuntu 18.04](https://youtu.be/RfB_IWw7pl4)
 
 ## Why does this code exist?
 
@@ -42,7 +42,7 @@ This is not for Ubuntu beginners. If things go wrong, you need to know about vir
 To install it, you need to know about `git clone` and you need to change your display manager to lightdm.
 
 Good nvidia technical support comes from this thread:
-https://devtalk.nvidia.com/default/topic/1032482/linux/optimus-on-ubuntu-18-04-is-a-step-backwards-but-i-found-the-first-good-solution/
+[Optimus on Ubuntu 18.04 is a step backwards ... but I found the first good solution](https://devtalk.nvidia.com/default/topic/1032482/linux/optimus-on-ubuntu-18-04-is-a-step-backwards-but-i-found-the-first-good-solution)
 
 Note: the Ubuntu developer who works so hard on this, delivering Ubuntu and Mint the best Optimus experience of any Linux distribution, is working on a new approach to switching, which is close to the old pre 18.04 method. He has a harder task than unofficial solutions like this code, because he needs to find a solution that works with gdm3. 
 
@@ -274,7 +274,7 @@ Jun 15 08:41:00 raffles systemd[1]: Started Socket service for on the fly prime
 
 If you swap to intel, reboot and can't get the display manager working, this is probably because the nvidia drivers were not unloaded. 
 
-## Intel-mode fix attempt 1:
+## Intel-mode fix attempt 1
 
 boot in recovery mode, and choose "resume boot" (possibly twice)
 This will probably get lightdm started, allowing you to log in.
@@ -303,7 +303,7 @@ journalctl -e
 
 You should not see an error telling you that bbswitch is not installed, because that means you didn't read the instructions above. Also, you should not see errors that no nvidia modules are installed, because that means you either did not install the nvidia drivers, or you removed them (perhaps by 18.04-standard `prime-select intel`, in which case `sudo /usr/bin/prime-select nvidia` and reboot. Please carefully read the installation instructions above ...
 
-## Intel-mode Fix attempt 2
+## Intel-mode fix attempt 2
 if you can't get to a graphical session even with recovery boot,
  then try to get to a virtual console and 
 check with `lsmod|grep nvidia`. 
@@ -323,6 +323,28 @@ sudo rmmod nvidia
 sudo systemctl start lightdm
 ```
 but you will have to work out why the nvidia-prime-boot.service did not do its job.
+
+## Intel-mode fix attempt 3
+As a last resort you can try to rename/remove your Xorg configuration file. Xorg file misconfiguration can prevent the desktop manager from starting. Such scenario could happen after major dist-upgrades from 16.04 to 17.10/18.04 or if you have custom Xorg settings, which by default in 18.04 should go to ```/usr/share/X11/xorg.conf.d```. So do this only if all other options/workarounds doesn't work.
+
+```
+sudo mv /etc/X11/xorg.conf /etc/X11/xorg.conf.backup
+reboot
+```
+
+This should help if your X server can't find screens or devices.
+You can check the X server logs with:
+```
+sudo cat /var/log/Xorg.0.log
+
+# OR the rootless way
+cat ~/.local/share/xorg/Xorg.0.log
+```
+
+If this doesn't help, you can restore your original Xorg config with:
+```
+sudo mv /etc/X11/xorg.conf.backup /etc/X11/xorg.conf
+```
 
 
 ## Display manager doesn't start in nvidia mode?
