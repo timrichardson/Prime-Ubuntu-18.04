@@ -65,7 +65,7 @@ to ensure that nvidia drivers are installed in your initramfs. That is, use the 
 * install bbswitch (via `sudo apt install bbswitch-dkms`)
 
 * lightdm as the display manager
-```bash
+```
 sudo apt install lightdm
 ```
 
@@ -84,7 +84,7 @@ Pay fanatically detailed attention to the Dependencies and Preparation steps abo
 
 Naturally, make sure you have git and git clone this repository. After you have done that...
 
-```bash
+```
 cd prime_socket/src
 sudo make install
 ```
@@ -106,7 +106,7 @@ for good luck.
 # Usage (changing modes)
 Usage is the same as the standard script, but this one takes about five seconds. Note: it will immediately kill your gnome session and log you out, by terminating the display manager with root privileges.
 
-```bash
+```
 sudo prime-select intel|nvidia|query
 ```
 
@@ -129,7 +129,7 @@ Ubuntu has added a section to the nvidia control panel which lets you change pro
 
 So you can make the gui tool use the modified version of prime-select once you're happy that it's working.
 
-```bash
+```
 sudo mv /usr/bin/prime-select /usr/bin/prime-select_orig
 sudo ln -s /usr/local/bin/prime-select /usr/bin/prime-select
 ```
@@ -139,13 +139,13 @@ Of course, this means if you need to use the standard script (for example, to fo
 # Did it work? Is the nvidia card powered off?
 
 after entering intel mode, start a sudo shell and test if the card is off:
-```bash
+```
 sudo -i
 modprobe bbswitch
 cat /proc/acpi/bbswitch
 ```
 and good output (for intel mode) looks like this
-```bash
+```
 tim@w520-mint ~ $  cat /proc/acpi/bbswitch 
 0000:01:00.0 OFF
 
@@ -156,7 +156,7 @@ and it is obviously deactivated when prime-select nvidia
 
 
 This is typical output in intel mode:
-```bash
+```
 $ systemctl status nvidia-prime-boot.service 
 ● nvidia-prime-boot.service - Unload nvidia modules and turn dGPU off during boot
    Loaded: loaded (/etc/systemd/system/nvidia-prime-boot.service; enabled; vendor preset: enabled)
@@ -166,7 +166,7 @@ $ systemctl status nvidia-prime-boot.service
 ## What services should be running in nvidia mode?
 The nvidia-prime-boot.service should be disabled.
 
-```bash
+```
 $ systemctl status nvidia-prime-boot.service 
 ● nvidia-prime-boot.service - Unload nvidia modules and turn dGPU off during boot
    Loaded: loaded (/etc/systemd/system/nvidia-prime-boot.service; disabled; vendor preset: enabled)
@@ -179,7 +179,7 @@ $ systemctl status nvidia-prime-boot.service
 You must have the nvidia drivers installed in your initramfs.
 This will be true if you have installed the standard Ubuntu nvidia-drivers but it will not be true if you did the standard 
 
-```bash
+```
 prime-select intel
 ```
 
@@ -194,26 +194,26 @@ You could rename /usr/local/bin/prime-select to /usr/local/bin/prime-select-fast
 
 
 purge and reinstall the package nvidia-prime
-```bash
+```
 sudo apt purge nvidia-prime; sudo apt install nvidia-prime
 ```
 
 Disable services:
 
-```bash
+```
 systemctl disable nvidia-prime-boot.service
 systemctl disable prime-socket.service
 ```
 
 And then
 
-```bash
+```
 sudo /usr/bin/prime-select nvidia
 ```
 
 and to revert to gdm3, install and select it as the default:
 
-```bash
+```
 sudo apt install gdm3
 sudo dpkg-reconfigure gdm3
 ```
@@ -257,7 +257,7 @@ Depending on what has gone wrong, you may be able to access a virtual console.
 Starting in recovery mode usually works to get a GUI login. (choose resume boot twice during the boot process). 
 make sure the systemctl lines in the makefile worked by using systemctl status prime-socket.
 This is what it should look like: the service should be active and running.
-```bash
+```
 ● prime-socket.service - Socket service for on the fly prime switching
    Loaded: loaded (/etc/systemd/system/prime-socket.service; enabled; vendor pre
    Active: active (running) since Fri 2018-06-15 08:41:00 AEST; 31min ago
@@ -280,13 +280,13 @@ boot in recovery mode, and choose "resume boot" (possibly twice)
 This will probably get lightdm started, allowing you to log in.
 
 Check if the service which unloads the nvidia drivers is working:
-```bash
+```
 sudo -i
 systemctl status nvidia-prime-boot.service
 ```
 
 Here is an example of healthy output:
-```bash
+```
 root@raffles:~# systemctl status nvidia-prime-boot.service
 ● nvidia-prime-boot.service - dGPU off during boot
    Loaded: loaded (/etc/systemd/system/nvidia-prime-boot.service; disabled; vendor preset: enabled)
@@ -297,7 +297,7 @@ Jun 10 10:24:09 raffles systemd[1]: Started dGPU off during boot.
 ```
 
 you may also find something useful in 
-```bash
+```
 journalctl -e
 ```
 
@@ -313,7 +313,7 @@ You should never see the nouveau driver, this would be a nasty bug, please open 
 If the nvidia drivers are present:
 then from the virtual terminal:
 
-```bash
+```
 sudo systemctl stop lightdm
 sudo rmmod nouveau #in case it is loaded
 sudo rmmod nvidia_drm
@@ -325,16 +325,16 @@ sudo systemctl start lightdm
 but you will have to work out why the nvidia-prime-boot.service did not do its job.
 
 ## Intel-mode fix attempt 3
-As a last resort you can try to rename/remove your Xorg configuration file. Xorg file misconfiguration can prevent the desktop manager from starting. So do this only if all other options/workarounds doesn't work.
+As a last resort you can try to rename/remove your Xorg configuration file. Xorg file misconfiguration can prevent the desktop manager from starting. Such scenario could happen after major dist-upgrades from 16.04 to 17.10/18.04 or if you have custom Xorg settings, which by default in 18.04 should go to ```/usr/share/X11/xorg.conf.d```. So do this only if all other options/workarounds doesn't work.
 
-```bash
+```
 sudo mv /etc/X11/xorg.conf /etc/X11/xorg.conf.backup
 reboot
 ```
 
 This should help if your X server can't find screens or devices.
 You can check the X server logs with:
-```bash
+```
 sudo cat /var/log/Xorg.0.log
 
 # OR the rootless way
@@ -342,7 +342,7 @@ cat ~/.local/share/xorg/Xorg.0.log
 ```
 
 If this doesn't help, you can restore your original Xorg config with:
-```bash
+```
 sudo mv /etc/X11/xorg.conf.backup /etc/X11/xorg.conf
 ```
 
