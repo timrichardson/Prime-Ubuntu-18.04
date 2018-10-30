@@ -1,6 +1,17 @@
 # Fast Switch  Prime-Ubuntu-18.04 / Mint 19
 
-*** Update
+*** Update October 31, 2018
+The work done to by Alberto Milone to backport the 18.10 improvements to 18.04 is working well for me, so this repository is redundant. Functionally the difference is that the code here will immediately kill your session, saving you the trouble of logging out. Alberto's packages require you to log out, but no rebooting, so kernel rebuidling, it's smooth.
+
+If you run the nvidia control panel in intel mode, you get an error and it doesn't start, so you switch back to Nvidia with sudo prime-select nvidia
+
+This Readme has steps to uninstall.
+
+lightdm is required still.
+I think kms is enabled by default, Alberto was not sure he would stick with that decision because it doesn't play well with gdm3. You need kms enabled under Optimus unless you want ugly tearing on the laptop screen, which is why gdm3 is not an option for Optimus users, in my opinion.
+
+
+Older:
 The Ubuntu developer who looks after the ubuntu nvidia-prime package has updated his work for Ubuntu 18.10 (currently between beta and release). 
 It works with lightdm and the non-wayland session. Swapping between hybrid and intel-only works without rebooting, you just need to log out & in again. The nvidia card is turned off with acpi calls, similar to bbswitch although the code is incorporated into a supported ubuntu package now, bbswitch is not a dependency. 
 Also, mode setting and prime synchronisation may be active by default. This was true close to release but the dev is getting reports from more people than just me that it breaks gdm3, the default display manager (gdm3 and nvida kms have never worked) and I think he will revert these changes. It's an easy fix, see below.
