@@ -9,7 +9,7 @@ If you run the nvidia control panel in intel mode, you get an error and it doesn
 
 This Readme has steps to uninstall.
 
-lightdm is required. If gdm3 works with nvidia modesetting and external displays, let me know, but it hasn't worked since at least 16.04. 
+lightdm is required. Even in 19.10, gdm3 is still broken with nvidia modesetting and external displays. You can fix it by running it as root, or by using lightdm. bug report:  https://bugs.launchpad.net/ubuntu/+source/nvidia-graphics-drivers-418/+bug/1716857
 
 So ubuntu users with Optimus should stick with lightdm, even in ubuntu 18.10
 
