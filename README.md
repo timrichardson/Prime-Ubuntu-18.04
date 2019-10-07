@@ -3,6 +3,8 @@
 *** Update October 31, 2018
 The work done to by Alberto Milone to backport the 18.10 improvements to 18.04 is working well for me, so this repository may be redundant in 18.04 and it should be un-necessary in 18.10. Functionally the difference is that the code here will immediately kill your session, saving you the trouble of logging out. Alberto's packages require you to log out, but no rebooting, so kernel rebuidling, it's smooth. However, the 18.10 packages are still more recent than the 18.04 packages, so working in 18.10 on your hardware may not mean working in 18.04. IN which case, try the solution here.
 
+Also note the exciting development that Canonical's 19.10 Optimus management looks like it will include the 'bumblebee' option: on-demand use on Nvidia per app, but you are restricted to the outputs of the intel graphics, which is nearly always only the laptop display.
+
 If you run the nvidia control panel in intel mode, you get an error and it doesn't start, so you switch back to Nvidia with sudo prime-select nvidia
 
 This Readme has steps to uninstall.
